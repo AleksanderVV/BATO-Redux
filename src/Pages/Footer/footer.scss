@@ -1,0 +1,23 @@
+@import 'src/data/variables/variables';
+
+footer {
+  color: $gray400-color;
+  font-weight: 300;
+  background-color: #E8EEF3;
+  padding-top: 35px;
+  padding-bottom: 55px;
+  a {
+    color: $gray400-color;
+  }
+  &__phone {
+    max-width: 300px;
+    padding-right: 20px;
+  }
+  &__email {
+    max-width: 300px;
+  }
+}
+#total footer {
+  background-color: $base800-color;
+  border-top: 1px solid $gray700-color;
+}

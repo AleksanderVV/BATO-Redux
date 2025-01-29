@@ -1,0 +1,33 @@
+<svg width="240" height="464" viewBox="0 0 240 464" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.8">
+<mask id="mask0_583_25462" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="374" width="240" height="90">
+<rect y="374.5" width="240" height="89.0002" rx="12" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_583_25462)">
+<path d="M240 177.5L3.22346e-05 376.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 190.5L3.22346e-05 389.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 203.5L3.22346e-05 402.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 216.5L3.22346e-05 415.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 229.5L2.99115e-05 428.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 242.5L3.22346e-05 441.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 255.5L3.22346e-05 454.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 268.5L3.22346e-05 467.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 281.5L3.22346e-05 480.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 294.5L3.22346e-05 493.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 307.5L3.22346e-05 506.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 320.5L3.22346e-05 519.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 333.5L3.22346e-05 532.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 346.5L3.22346e-05 545.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 359.5L3.22346e-05 558.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 372.5L3.22346e-05 571.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 385.5L3.22346e-05 584.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 398.5L3.22346e-05 597.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 411.5L3.22346e-05 610.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 424.5L3.22346e-05 623.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 437.5L3.22346e-05 636.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 450.5L3.22346e-05 649.5" stroke="#BBBBBB" stroke-linecap="round"/>
+<path d="M240 463.5L3.22346e-05 662.5" stroke="#BBBBBB" stroke-linecap="round"/>
+</g>
+<rect x="0.5" y="1" width="239" height="462" rx="11.5" stroke="#BFBFBF"/>
+</g>
+</svg>
