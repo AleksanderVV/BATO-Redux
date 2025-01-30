@@ -33,9 +33,9 @@ const App = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const handleClick = () => {
+    const handleClick = useCallback(() => {
         navigate('/sendForm', {state: {currentToolbox}});
-    }
+    },[currentToolbox, navigate]);
 
     useEffect(() => {
 
