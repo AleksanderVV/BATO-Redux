@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import useToolboxService from '../../services/ToolboxService';
 
@@ -82,16 +82,16 @@ const App = () => {
         }
     }
 
-    const searchAcc = (event) => {
+    const searchAcc = useCallback((event) => {
         const searchValue = event.target.value.toLowerCase();
 
         setFilteredAccessories(
             accessories.filter(acc => acc.name.toLowerCase().includes(searchValue) || acc.id.includes(searchValue))
         )
-    }
+    }, [accessories]);
 
     // Function to calculate remaining space in the current drawer
-    const calculateRemainingSpace = (drawerItems) => {
+    const calculateRemainingSpace = useCallback((drawerItems) => {
         let remainingSpace = currentToolbox?.drawers[currentDrawer]; // Total space in a drawer
 
         drawerItems.forEach((item) => {
@@ -99,9 +99,9 @@ const App = () => {
         });
 
         return remainingSpace;
-    };
+    }, [currentToolbox, currentDrawer]);
 
-    const handleAccessoryClick = (accId) => {
+    const handleAccessoryClick = useCallback((accId) => {
         if (isMobile) {
             setMobileOpen(true);
         }
@@ -135,9 +135,9 @@ const App = () => {
 
           return newDrawerData;
         });
-    };
+    }, [accessories, calculateRemainingSpace, currentDrawer, isMobile]);
         
-    const chooseCurrentAttachedAcc = (id) => {
+    const chooseCurrentAttachedAcc = useCallback((id) => {
         if (isMobile) {
             setMobileOpen(true);
         }
@@ -148,9 +148,9 @@ const App = () => {
             }
             return [...prevState, id];
         });
-    };
+    },[isMobile]);
 
-    const deleteAcc = (event) => {
+    const deleteAcc = useCallback((event) => {
         const drawerAcc = event.target.dataset.drawer;
         const idAcc = event.target.dataset.id;
 
@@ -166,9 +166,11 @@ const App = () => {
 
             return newDrawerData;
         })
-    }
+    },[drawersData]);
 
-    const quantityItems =  selectedAttachedAcc.length + Object.values(drawersData).reduce((sum, array) => sum + array.length, 0);
+    const quantityItems =  useCallback(() => {
+        return selectedAttachedAcc.length + Object.values(drawersData).reduce((sum, array) => sum + array.length, 0);
+    },[selectedAttachedAcc,drawersData]);
 
     return (
         <>
@@ -177,7 +179,7 @@ const App = () => {
                 isMobile={isMobile}
                 isMenuOpen={isMenuOpen}
                 toggleDropdownMenuOpen={toggleDropdownMenuOpen}
-                quantityItems={quantityItems}/>
+                quantityItems={quantityItems()}/>
             <TopBar 
                 isSticky={isSticky}
                 isMobile={isMobile}
@@ -193,7 +195,7 @@ const App = () => {
                 fullPrice={fullPrice}
                 setFullPrice={setFullPrice}
                 deleteAcc={deleteAcc}
-                quantityItems={quantityItems} />
+                quantityItems={quantityItems()} />
             <Routes>
                 <Route path="/" element={
                     <FirstScreen 
@@ -223,7 +225,7 @@ const App = () => {
                             attachingAccessories={attachingAccessories}
                             fullPrice={fullPrice}
                             deleteAcc={deleteAcc}
-                            quantityItems={quantityItems} />} />
+                            quantityItems={quantityItems()} />} />
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 
