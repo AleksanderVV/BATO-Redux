@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Tab } from 'react-bootstrap';
 
 import AccessoriesFilters from '../../../components/AccessoriesFilters/AccessoriesFilters';
