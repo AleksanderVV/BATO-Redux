@@ -3,12 +3,18 @@ import ToolboxList from '../../../components/ToolboxList/ToolboxList';
 
 import useToolboxService from "../../../services/ToolboxService";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+
+import { dataFetching, toolboxFetched, dataFetchingError } from '../../../actions';
 
 import './mainContentFirstScreen.scss';
 
 const MainContentFirstScreen = ({isMobile}) => {
 
-    const [toolboxList, setToolboxList] = useState([]);
+    const {process, toolboxList} = useSelector(state => state.conditions);
+    const dispatch = useDispatch();
+
+    // const [toolboxList, setToolboxList] = useState([]);
     const [filteredToolboxList, setFilteredToolboxList] = useState([]);
     const [filters, setFilters] = useState({
         wheels: 'all',
@@ -16,22 +22,21 @@ const MainContentFirstScreen = ({isMobile}) => {
         numberDrawers: 'all'
     });
 
-    const {process, setProcess, getAllToolbox} = useToolboxService();
+    const {getAllToolbox} = useToolboxService(); 
   
     useEffect(() => {
-      onRequest();
+        dispatch(dataFetching());
+        getAllToolbox()
+            .then(data => {
+                // setToolboxList(data);
+                dispatch(toolboxFetched(data));
+                setFilteredToolboxList(data);
+            })
+            .then(() => dispatch(toolboxFetched()))
+            .catch(() => dispatch(dataFetchingError()))
       // eslint-disable-next-line
     }, []);
   
-    const onRequest = () => {
-      getAllToolbox()
-        .then(data => {
-            setToolboxList(data);
-            setFilteredToolboxList(data);
-        })
-        .then(() => setProcess('confirmed'));
-    }
-
     const filterToolboxes = (filters) => {
         const {wheels, color, numberDrawers} = filters;
 

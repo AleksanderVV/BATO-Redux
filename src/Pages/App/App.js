@@ -28,7 +28,7 @@ const App = () => {
     const [loading, setLoading] = useState(true);
     const [mobileOpen, setMobileOpen] = useState(false);
 
-    const {setProcess, getAccessories, getAttachingAccessories} = useToolboxService();
+    const {getAccessories, getAttachingAccessories} = useToolboxService();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -73,9 +73,9 @@ const App = () => {
             setAccessories(acc);
             setFilteredAccessories(acc);
             setAttachingAccessories(attachingAcc);
-            setProcess('confirmed');
+            // setProcess('confirmed');
         } catch (error) {
-            setProcess('error');
+            // setProcess('error');
             console.error('Failed to fetch accessories');
         } finally {
             setLoading(false);

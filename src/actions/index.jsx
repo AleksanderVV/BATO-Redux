@@ -4,9 +4,10 @@ export const dataFetching = () => {
     }
 }
 
-export const dataFetched = () => {
+export const toolboxFetched = (toolbox) => {
     return {
-        type: 'DATA_FETCHED'
+        type: 'TOOLBOX_FETCHED',
+        payload: toolbox
     }
 }
 

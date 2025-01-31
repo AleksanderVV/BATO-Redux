@@ -5,7 +5,6 @@ import accessories from '../reducers/accessories';
 
 const store = configureStore({
     reducer: {conditions, toolbox, accessories},
-    middleware: getDefaultMiddleware,
     devTools: process.env.NODE_ENV !== 'production'
 })
 
