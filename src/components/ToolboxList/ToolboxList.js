@@ -2,7 +2,8 @@ import { useMemo } from "react";
 // import setContent from "../../utils/setContent";
 import { useNavigate } from "react-router-dom";
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { toolboxChoose } from '../../actions';
 
 import xIcon from '../../data/images/icon/x-icon.svg';
 import checkIcon from '../../data/images/icon/check.svg';
@@ -12,6 +13,8 @@ import './toolboxList.scss';
 const ToolboxList = ({data}) => {
 
   const {process} = useSelector(state => state.conditions);
+  // const {toolbox} = useSelector(state => state.toolbox);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -29,7 +32,8 @@ const ToolboxList = ({data}) => {
       );
 
       const handleClick = () => {
-        navigate("/chooseAccessories", {state: {item}});
+        dispatch(toolboxChoose(item));
+        navigate("/chooseAccessories");
       }
 
       return (

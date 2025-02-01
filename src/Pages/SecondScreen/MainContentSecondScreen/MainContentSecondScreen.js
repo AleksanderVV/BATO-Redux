@@ -11,7 +11,7 @@ import filterMobile from '../../../data/images/icon/filter-mobile.svg';
 const MainContentSecondScreen = ({  isMobile,
                                     mobileOpen,
                                     toggleDropdownMenuOpen, 
-                                    currentToolbox, 
+                                    // currentToolbox, 
                                     fullPrice, 
                                     handleClick,
                                     drawersData,
@@ -28,6 +28,7 @@ const MainContentSecondScreen = ({  isMobile,
                                     attachingAccessories,
                                     deleteAcc,
                                     quantityItems}) => {
+
     const [openChooseDrawers, setOpenChooseDrawers] = useState(false);
 
     return (
@@ -37,7 +38,7 @@ const MainContentSecondScreen = ({  isMobile,
                     <DrawerSideBar 
                         isMobile={isMobile}
                         toggleDropdownMenuOpen={toggleDropdownMenuOpen}
-                        currentToolbox={currentToolbox}
+                        // currentToolbox={currentToolbox}
                         fullPrice={fullPrice}
                         handleClick={handleClick}
                         currentDrawer={currentDrawer}
@@ -55,7 +56,7 @@ const MainContentSecondScreen = ({  isMobile,
                             <AccessoriesFilters searchAcc={searchAcc}/>
                             {!loading ? (
                                 <AccessoriesList 
-                                    currentToolbox={currentToolbox} 
+                                    // currentToolbox={currentToolbox} 
                                     accessories={filteredAccessories} 
                                     attachingAccessories={attachingAccessories}
                                     selectedAttachedAcc={selectedAttachedAcc}

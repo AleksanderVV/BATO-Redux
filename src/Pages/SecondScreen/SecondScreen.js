@@ -8,7 +8,7 @@ const SecondScreen = ({
     mobileOpen,
     isSticky, 
     toggleDropdownMenuOpen,
-    currentToolbox, 
+    // currentToolbox, 
     fullPrice,
     handleClick,
     drawersData,
@@ -36,7 +36,7 @@ const SecondScreen = ({
                         isMobile={isMobile}
                         mobileOpen={mobileOpen}
                         toggleDropdownMenuOpen={toggleDropdownMenuOpen}
-                        currentToolbox={currentToolbox} 
+                        // currentToolbox={currentToolbox} 
                         fullPrice={fullPrice}
                         handleClick={handleClick}
                         drawersData={drawersData}

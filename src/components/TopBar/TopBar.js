@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import TopBarAccessory from '../TopBarAccessory/TopBarAccessory';
 import TopBarAttachedAccessory from '../TopBarAttachedAccessory/TopBarAttachedAccessory';
 
+import { useSelector } from 'react-redux';
+
 import './topBar.scss';
 
 import arrowDown from '../../data/images/icon/arrow-down.svg';
@@ -16,8 +18,8 @@ const TopBar = ({
                 isMenuOpen, 
                 setMenuOpen, 
                 toggleDropdownMenuOpen, 
-                currentToolbox, 
-                setCurrentToolbox, 
+                // currentToolbox, 
+                // setCurrentToolbox, 
                 handleClick,
                 drawersData,
                 selectedAttachedAcc,
@@ -29,15 +31,17 @@ const TopBar = ({
     const location = useLocation();
     const dropdownRef = useRef(null);
 
-    useEffect(() => {
+    const {currentToolbox} = useSelector(state => state.toolbox);
 
-        if(location.pathname === '/chooseAccessories' && location.state?.item) {
-            const toolbox = location.state.item;
+    // useEffect(() => {
 
-            setCurrentToolbox(toolbox);
-        }
-        // eslint-disable-next-line
-    }, [location.key]);
+    //     if(location.pathname === '/chooseAccessories' && location.state?.item) {
+    //         const toolbox = location.state.item;
+
+    //         setCurrentToolbox(toolbox);
+    //     }
+    //     // eslint-disable-next-line
+    // }, [location.key]);
 
     useEffect(() => {
 

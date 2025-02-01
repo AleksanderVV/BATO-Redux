@@ -16,3 +16,9 @@ export const dataFetchingError = () => {
         type: 'DATA_FETCHING_ERROR'
     }
 }
+export const toolboxChoose = (toolbox) => {
+    return {
+        type: 'TOOLBOX_CHOOSE',
+        payload: toolbox
+    }
+}

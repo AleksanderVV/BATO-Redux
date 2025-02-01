@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Tab, Nav } from 'react-bootstrap';
 import DrawerViewAccessory from '../DrawerViewAccessory/DrawerViewAccessory';
 
+import { useSelector } from 'react-redux';
+
 import './drawerSideBar.scss';
 
 import xIcon from '../../data/images/icon/x-icon.svg';
@@ -13,7 +15,7 @@ import cart from '../../data/images/icon/cart.svg';
 
 const DrawerSideBar = ({isMobile,
                         toggleDropdownMenuOpen, 
-                        currentToolbox, 
+                        // currentToolbox, 
                         fullPrice, 
                         handleClick, 
                         currentDrawer, 
@@ -25,6 +27,9 @@ const DrawerSideBar = ({isMobile,
                         mobileOpen,
                         openChooseDrawers,
                         setOpenChooseDrawers}) => {
+
+    const {currentToolbox} = useSelector(state => state.toolbox);
+
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');
 

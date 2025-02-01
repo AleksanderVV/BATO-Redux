@@ -1,5 +1,6 @@
 const initialState = {
-    toolboxList: []
+    toolboxList: [],
+    currentToolbox: null
 }
 
 const toolbox = (state = initialState, action) => {
@@ -8,6 +9,11 @@ const toolbox = (state = initialState, action) => {
             return {
                 ...state,
                 toolboxList: action.payload
+            }
+        case 'TOOLBOX_CHOOSE':
+            return {
+                ...state,
+                currentToolbox: action.payload
             }
         default: return state
     }

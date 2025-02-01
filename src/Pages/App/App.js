@@ -209,7 +209,7 @@ const App = () => {
                             mobileOpen={mobileOpen}
                             isSticky={isSticky}
                             toggleDropdownMenuOpen={toggleDropdownMenuOpen}
-                            currentToolbox={currentToolbox} 
+                            // currentToolbox={currentToolbox} 
                             handleClick={handleClick}
                             drawersData={drawersData}
                             setDrawersData={setDrawersData}
@@ -229,7 +229,7 @@ const App = () => {
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 
-                                currentToolbox={currentToolbox}
+                                // currentToolbox={currentToolbox}
                                 drawersData={drawersData}
                                 selectedAttachedAcc={selectedAttachedAcc}
                                 fullPrice={fullPrice} />} />
