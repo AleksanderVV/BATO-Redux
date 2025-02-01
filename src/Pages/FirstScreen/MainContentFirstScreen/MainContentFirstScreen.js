@@ -14,7 +14,6 @@ const MainContentFirstScreen = ({isMobile}) => {
     const {process, toolboxList} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
 
-    // const [toolboxList, setToolboxList] = useState([]);
     const [filteredToolboxList, setFilteredToolboxList] = useState([]);
     const [filters, setFilters] = useState({
         wheels: 'all',
@@ -28,7 +27,6 @@ const MainContentFirstScreen = ({isMobile}) => {
         dispatch(dataFetching());
         getAllToolbox()
             .then(data => {
-                // setToolboxList(data);
                 dispatch(toolboxFetched(data));
                 setFilteredToolboxList(data);
             })

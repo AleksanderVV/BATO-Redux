@@ -1,6 +1,5 @@
 const initialState = {
-    process: 'waiting',
-    toolboxList: []
+    process: 'waiting'
 }
 
 const conditions = (state = initialState, action) => {
@@ -13,7 +12,6 @@ const conditions = (state = initialState, action) => {
         case 'TOOLBOX_FETCHED':
             return {
                 ...state,
-                toolboxList: action.payload,
                 process: 'confirmed'
             }
         case 'DATA_FETCHING_ERROR':
