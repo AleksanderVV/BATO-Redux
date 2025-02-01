@@ -11,7 +11,7 @@ import './mainContentFirstScreen.scss';
 
 const MainContentFirstScreen = ({isMobile}) => {
 
-    const {process, toolboxList} = useSelector(state => state.conditions);
+    const {toolboxList} = useSelector(state => state.toolbox);
     const dispatch = useDispatch();
 
     const [filteredToolboxList, setFilteredToolboxList] = useState([]);
@@ -30,7 +30,6 @@ const MainContentFirstScreen = ({isMobile}) => {
                 dispatch(toolboxFetched(data));
                 setFilteredToolboxList(data);
             })
-            .then(() => dispatch(toolboxFetched()))
             .catch(() => dispatch(dataFetchingError()))
       // eslint-disable-next-line
     }, []);
@@ -68,7 +67,7 @@ const MainContentFirstScreen = ({isMobile}) => {
                     filters={filters} 
                     updateFilter={updateFilter}
                     isMobile={isMobile} />
-                <ToolboxList data={filteredToolboxList} process={process}/>
+                <ToolboxList data={filteredToolboxList}/>
             </div>
         </section>
     )

@@ -1,13 +1,18 @@
 import { useMemo } from "react";
-import setContent from "../../utils/setContent";
+// import setContent from "../../utils/setContent";
 import { useNavigate } from "react-router-dom";
+
+import { useSelector } from 'react-redux';
 
 import xIcon from '../../data/images/icon/x-icon.svg';
 import checkIcon from '../../data/images/icon/check.svg';
 
 import './toolboxList.scss';
 
-const ToolboxList = ({data, process}) => {
+const ToolboxList = ({data}) => {
+
+  const {process} = useSelector(state => state.conditions);
+
   const navigate = useNavigate();
 
   const renderItems = (data) => {
@@ -86,6 +91,22 @@ const ToolboxList = ({data, process}) => {
   }
 
   const elements = useMemo(() => {
+
+    const setContent = (process, Component, data) => {
+      switch (process) {
+          case 'waiting':
+              return 'Waiting to load data...';
+          case 'loading':
+              return 'Data loading...';
+          case 'confirmed':
+              return <Component data={data}/>
+          case 'error':
+              return new Error(`Error ${Error.name}`);
+          default:
+              return new Error('Unexpected process state');
+      }
+    }
+
     return setContent(process, () => renderItems(data))
     // eslint-disable-next-line
   }, [process,data])

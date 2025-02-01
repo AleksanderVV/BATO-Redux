@@ -200,7 +200,7 @@ const App = () => {
                 <Route path="/" element={
                     <FirstScreen 
                         isSticky={isSticky}
-                        isMobile={isMobile} />} />
+                        isMobile={isMobile} />} /> 
                 <Route 
                     path="/chooseAccessories" 
                     element={
