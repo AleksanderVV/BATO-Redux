@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import useToolboxService from '../../services/ToolboxService';
+import { useSelector } from "react-redux";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -13,14 +14,13 @@ import ThirdScreen from '../ThirdScreen/ThirdScreen';
 import './App.scss';
 
 const App = () => {
-    const [currentToolbox, setCurrentToolbox] = useState(null);
+    // const [currentToolbox, setCurrentToolbox] = useState(null);
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isSticky, setIsSticky] = useState(false);
     const [isMobile, setIsMobile] = useState(null);
     const [drawersData, setDrawersData] = useState({});
     const [selectedAttachedAcc, setSelectedAttachedAcc] = useState([]);
     const [currentDrawer, setCurrentDrawer] = useState(0);
-    const [fullPrice, setFullPrice] = useState(currentToolbox?.price || 0);
 
     const [accessories, setAccessories] = useState([]);
     const [filteredAccessories, setFilteredAccessories] = useState([]);
@@ -29,6 +29,9 @@ const App = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
 
     const {getAccessories, getAttachingAccessories} = useToolboxService();
+
+    const {currentToolbox} = useSelector(state => state.toolbox);
+    const [fullPrice, setFullPrice] = useState(currentToolbox?.price || 0);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -102,6 +105,7 @@ const App = () => {
     }, [currentToolbox, currentDrawer]);
 
     const handleAccessoryClick = useCallback((accId) => {
+        
         if (isMobile) {
             setMobileOpen(true);
         }
@@ -187,7 +191,7 @@ const App = () => {
                 setMenuOpen={setMenuOpen}
                 toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                 currentToolbox={currentToolbox} 
-                setCurrentToolbox={setCurrentToolbox} 
+                // setCurrentToolbox={setCurrentToolbox} 
                 handleClick={handleClick}
                 drawersData={drawersData}
                 selectedAttachedAcc={selectedAttachedAcc}

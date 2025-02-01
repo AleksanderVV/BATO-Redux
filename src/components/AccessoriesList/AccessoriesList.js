@@ -1,4 +1,5 @@
 // import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Tab } from 'react-bootstrap';
 
 import accImage from '../../data/images/accessory-1.png';
@@ -13,7 +14,7 @@ import d8940 from '../../data/images/d-8940.jpg';
 import d8919 from '../../data/images/d-8919.jpg';
 
 const AccessoriesList = ({
-                            currentToolbox, 
+                            // currentToolbox, 
                             accessories, 
                             attachingAccessories, 
                             selectedAttachedAcc, 
@@ -22,6 +23,8 @@ const AccessoriesList = ({
                             drawersData,
                             calculateRemainingSpace,
                             handleAccessoryClick}) => {
+    
+    const {currentToolbox} = useSelector(state => state.toolbox);
 
     const filteredAccessories = attachingAccessories.filter(acc => 
         currentToolbox?.accessories.includes(Number(acc.id))
