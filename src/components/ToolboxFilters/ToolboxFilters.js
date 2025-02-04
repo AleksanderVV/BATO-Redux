@@ -10,7 +10,7 @@ const ToolboxFilters = ({data, filters, updateFilter, isMobile}) => {
         <div className="row">
         <div className="col-12">
           <div className="main-boxes__filter filter-boxes d-flex justify-content-end">
-            <DrawerFilterToolbox 
+            {/* <DrawerFilterToolbox 
               data={data} 
               isMobile={isMobile}
               selected={filters.numberDrawers}
@@ -21,7 +21,7 @@ const ToolboxFilters = ({data, filters, updateFilter, isMobile}) => {
               updateFilter={value => updateFilter('color', value)}/>
             <WheelsFilterToolbox 
               selected={filters.wheels}
-              updateFilter={value => updateFilter('wheels', value)}/>
+              updateFilter={value => updateFilter('wheels', value)}/> */}
           </div>
         </div>
       </div>
