@@ -15,6 +15,19 @@ const toolbox = (state = initialState, action) => {
                 ...state,
                 currentToolbox: action.payload
             }
+        case 'TOOLBOX_COLOR_FILTER':
+            return {
+                ...state,
+
+            }
+        case 'TOOLBOX_DRAWERS_FILTER':
+            return {
+                ...state
+            }
+        case 'TOOLBOX_WHEELS_FILTER':
+            return {
+                ...state
+            }
         default: return state
     }
 }
