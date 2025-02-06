@@ -1,21 +1,30 @@
 import { useState, useEffect, useRef } from 'react';
 
+import { useSelector } from 'react-redux';
+import { toolboxList } from '../../actions';
+
 import './drawerFilterToolbox.scss';
 
 import arrowDown from '../../data/images/icon/arrow-down-black.svg';
 
-const DrawerFilterToolbox = ({data, isMobile, updateFilter}) => {
+const DrawerFilterToolbox = ({
+                              // data, 
+                              isMobile, 
+                              updateFilter
+                            }) => {
   const [numberDrawers, setNumberDrawers] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [handleChooseNumberOfDrawers, setHandleChooseNumberOfDrawers] = useState('all');
+
+  const {toolboxList} = useSelector(state => state.toolbox);
   
   const menuRef = useRef(null);
 
   // Create dropdown filter items
   useEffect(() => {
-    const filters = [...new Set(data.map(i => i.numberDrawers))].sort((a,b) => a - b);
+    const filters = [...new Set(toolboxList.map(i => i.numberDrawers))].sort((a,b) => a - b);
     setNumberDrawers(filters);
-  },[data]);
+  },[toolboxList]);
 
   // Toggle  open/close dropdown menu
   const toggleMenu = () => {
