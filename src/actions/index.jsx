@@ -1,3 +1,5 @@
+import { type } from "@testing-library/user-event/dist/type"
+
 export const dataFetching = () => {
     return {
         type: 'DATA_FETCHING'
@@ -20,5 +22,23 @@ export const toolboxChoose = (toolbox) => {
     return {
         type: 'TOOLBOX_CHOOSE',
         payload: toolbox
+    }
+}
+export const toolboxColorFiltering = () => {
+    return {
+        type: 'TOOLBOX_COLOR_FILTER',
+        payload: ''
+    }
+}
+export const toolboxDrawersFiltering = () => {
+    return {
+        type: 'TOOLBOX_DRAWERS_FILTER',
+        payload: ''
+    }
+}
+export const toolboxWheelsFiltering = () => {
+    return {
+        type: 'TOOLBOX_WHEELS_FILTER',
+        payload: ''
     }
 }
