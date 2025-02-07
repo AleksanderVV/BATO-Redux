@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import arrowDown from '../../data/images/icon/arrow-down-black.svg';
 
 const ColorFilterToolbox = ({
-                            // data, 
                             updateFilter
                           }) => {
   const [colorsData, setColorsData] = useState([]);

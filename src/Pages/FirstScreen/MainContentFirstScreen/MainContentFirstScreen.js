@@ -63,7 +63,6 @@ const MainContentFirstScreen = ({isMobile}) => {
         <section className="main-boxes">
             <div className="container">
                 <ToolboxFilters 
-                    // data={toolboxList} 
                     filters={filters} 
                     updateFilter={updateFilter}
                     isMobile={isMobile} />

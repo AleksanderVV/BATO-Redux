@@ -18,8 +18,6 @@ const TopBar = ({
                 isMenuOpen, 
                 setMenuOpen, 
                 toggleDropdownMenuOpen, 
-                // currentToolbox, 
-                // setCurrentToolbox, 
                 handleClick,
                 drawersData,
                 selectedAttachedAcc,
@@ -32,16 +30,6 @@ const TopBar = ({
     const dropdownRef = useRef(null);
 
     const {currentToolbox} = useSelector(state => state.toolbox);
-
-    // useEffect(() => {
-
-    //     if(location.pathname === '/chooseAccessories' && location.state?.item) {
-    //         const toolbox = location.state.item;
-
-    //         setCurrentToolbox(toolbox);
-    //     }
-    //     // eslint-disable-next-line
-    // }, [location.key]);
 
     useEffect(() => {
 

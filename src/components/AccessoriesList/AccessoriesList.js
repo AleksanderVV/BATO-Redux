@@ -14,7 +14,6 @@ import d8940 from '../../data/images/d-8940.jpg';
 import d8919 from '../../data/images/d-8919.jpg';
 
 const AccessoriesList = ({
-                            // currentToolbox, 
                             accessories, 
                             attachingAccessories, 
                             selectedAttachedAcc, 

@@ -14,7 +14,6 @@ import ThirdScreen from '../ThirdScreen/ThirdScreen';
 import './App.scss';
 
 const App = () => {
-    // const [currentToolbox, setCurrentToolbox] = useState(null);
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isSticky, setIsSticky] = useState(false);
     const [isMobile, setIsMobile] = useState(null);
@@ -31,6 +30,7 @@ const App = () => {
     const {getAccessories, getAttachingAccessories} = useToolboxService();
 
     const {currentToolbox} = useSelector(state => state.toolbox);
+
     const [fullPrice, setFullPrice] = useState(currentToolbox?.price || 0);
 
     const navigate = useNavigate();
@@ -76,9 +76,7 @@ const App = () => {
             setAccessories(acc);
             setFilteredAccessories(acc);
             setAttachingAccessories(attachingAcc);
-            // setProcess('confirmed');
         } catch (error) {
-            // setProcess('error');
             console.error('Failed to fetch accessories');
         } finally {
             setLoading(false);
@@ -191,7 +189,6 @@ const App = () => {
                 setMenuOpen={setMenuOpen}
                 toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                 currentToolbox={currentToolbox} 
-                // setCurrentToolbox={setCurrentToolbox} 
                 handleClick={handleClick}
                 drawersData={drawersData}
                 selectedAttachedAcc={selectedAttachedAcc}
@@ -213,7 +210,6 @@ const App = () => {
                             mobileOpen={mobileOpen}
                             isSticky={isSticky}
                             toggleDropdownMenuOpen={toggleDropdownMenuOpen}
-                            // currentToolbox={currentToolbox} 
                             handleClick={handleClick}
                             drawersData={drawersData}
                             setDrawersData={setDrawersData}
@@ -233,7 +229,6 @@ const App = () => {
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 
-                                // currentToolbox={currentToolbox}
                                 drawersData={drawersData}
                                 selectedAttachedAcc={selectedAttachedAcc}
                                 fullPrice={fullPrice} />} />

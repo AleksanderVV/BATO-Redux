@@ -1,14 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 
 import { useSelector } from 'react-redux';
-import { toolboxList } from '../../actions';
 
 import './drawerFilterToolbox.scss';
 
 import arrowDown from '../../data/images/icon/arrow-down-black.svg';
 
 const DrawerFilterToolbox = ({
-                              // data, 
                               isMobile, 
                               updateFilter
                             }) => {

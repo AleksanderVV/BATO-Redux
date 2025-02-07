@@ -15,7 +15,6 @@ import cart from '../../data/images/icon/cart.svg';
 
 const DrawerSideBar = ({isMobile,
                         toggleDropdownMenuOpen, 
-                        // currentToolbox, 
                         fullPrice, 
                         handleClick, 
                         currentDrawer, 

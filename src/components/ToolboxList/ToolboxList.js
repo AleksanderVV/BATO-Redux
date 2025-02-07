@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-// import setContent from "../../utils/setContent";
 import { useNavigate } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,7 +12,6 @@ import './toolboxList.scss';
 const ToolboxList = ({data}) => {
 
   const {process} = useSelector(state => state.conditions);
-  // const {toolbox} = useSelector(state => state.toolbox);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
