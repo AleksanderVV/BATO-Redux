@@ -14,13 +14,13 @@ const ToolboxFilters = ({data, filters, updateFilter, isMobile}) => {
               // data={data} 
               isMobile={isMobile}
               updateFilter={value => updateFilter('numberDrawers', value)}/>
-            {/* <ColorFilterToolbox 
-              data={data} 
+            <ColorFilterToolbox 
+              // data={data} 
               selected={filters.color}
               updateFilter={value => updateFilter('color', value)}/>
             <WheelsFilterToolbox 
               selected={filters.wheels}
-              updateFilter={value => updateFilter('wheels', value)}/> */}
+              updateFilter={value => updateFilter('wheels', value)}/>
           </div>
         </div>
       </div>

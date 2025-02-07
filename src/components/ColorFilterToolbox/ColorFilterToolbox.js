@@ -1,20 +1,27 @@
 import { useEffect, useState, useRef } from 'react';
-import arrowDown from '../../data/images/icon/arrow-down-black.svg'
+import { useSelector } from 'react-redux';
 
-const ColorFilterToolbox = ({data, updateFilter}) => {
+import arrowDown from '../../data/images/icon/arrow-down-black.svg';
+
+const ColorFilterToolbox = ({
+                            // data, 
+                            updateFilter
+                          }) => {
   const [colorsData, setColorsData] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState('all');
+
+  const {toolboxList} = useSelector(state => state.toolbox);
 
   const menuRef = useRef(null);
 
   useEffect(() => {
     const filters = Array.from(
-      new Map(data.map(i => [i.color[1], [i.color[0], i.color[1]]])).values()
+      new Map(toolboxList.map(i => [i.color[1], [i.color[0], i.color[1]]])).values()
     );
     setColorsData(filters);
     
-  }, [data])
+  }, [toolboxList])
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
