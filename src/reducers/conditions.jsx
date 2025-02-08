@@ -1,5 +1,6 @@
 const initialState = {
-    process: 'waiting'
+    process: 'waiting',
+    isMobile: false
 }
 
 const conditions = (state = initialState, action) => {
@@ -18,6 +19,11 @@ const conditions = (state = initialState, action) => {
             return {
                 ...state,
                 process: 'error'
+            }
+        case 'CHECK_IS_MOBILE':
+            return {
+                ...state,
+                isMobile: true
             }
         default: return state
     }
