@@ -1,10 +1,14 @@
+import { useSelector } from 'react-redux';
+
 import './mainTitleSecondScreen.scss';
 import plusImage from '../../../data/images/icon/plus.svg';
 import shadowImage from '../../../data/images/box-shadow.png';
 import mouseImage from '../../../data/images/icon/mouse.svg';
 import flagImage from '../../../data/images/icon/flag.svg';
 
-const MainTitleSecondScreen = ({isSticky, isMobile}) => {
+const MainTitleSecondScreen = ({isSticky}) => {
+    const {isMobile} = useSelector(state => state.conditions);
+    
     return (
         <section className={`total-main total-accessories ${!isSticky ? '' : isMobile ? '' : 'margin-top'}`}>
             <div className="container d-none d-sm-block">

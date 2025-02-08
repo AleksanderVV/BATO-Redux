@@ -14,7 +14,6 @@ import cartImage from '../../data/images/icon/cart.svg';
 
 const TopBar = ({
                 isSticky,
-                isMobile,
                 isMenuOpen, 
                 setMenuOpen, 
                 toggleDropdownMenuOpen, 
@@ -30,6 +29,7 @@ const TopBar = ({
     const dropdownRef = useRef(null);
 
     const {currentToolbox} = useSelector(state => state.toolbox);
+    const { isMobile } = useSelector(state => state.conditions);
 
     useEffect(() => {
 

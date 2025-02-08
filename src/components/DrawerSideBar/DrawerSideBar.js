@@ -13,7 +13,7 @@ import drawer5 from '../../data/images/drawer5.webp';
 import resetImage from '../../data/images/icon/reset.svg';
 import cart from '../../data/images/icon/cart.svg';
 
-const DrawerSideBar = ({isMobile,
+const DrawerSideBar = ({
                         toggleDropdownMenuOpen, 
                         fullPrice, 
                         handleClick, 
@@ -28,6 +28,7 @@ const DrawerSideBar = ({isMobile,
                         setOpenChooseDrawers}) => {
 
     const {currentToolbox} = useSelector(state => state.toolbox);
+    const {isMobile} = useSelector(state => state.conditions);
 
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');

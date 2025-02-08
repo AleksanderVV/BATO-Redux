@@ -4,14 +4,13 @@ import WheelsFilterToolbox from '../WheelsFilterToolbox/WheelsFilterToolbox';
 
 import './toolboxFilters.scss';
 
-const ToolboxFilters = ({data, filters, updateFilter, isMobile}) => {
+const ToolboxFilters = ({ filters, updateFilter }) => {
 
     return (
         <div className="row">
         <div className="col-12">
           <div className="main-boxes__filter filter-boxes d-flex justify-content-end">
             <DrawerFilterToolbox 
-              isMobile={isMobile}
               updateFilter={value => updateFilter('numberDrawers', value)}/>
             <ColorFilterToolbox 
               selected={filters.color}

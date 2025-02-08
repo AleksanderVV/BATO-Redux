@@ -9,7 +9,7 @@ import { dataFetching, toolboxFetched, dataFetchingError } from '../../../action
 
 import './mainContentFirstScreen.scss';
 
-const MainContentFirstScreen = ({isMobile}) => {
+const MainContentFirstScreen = () => {
 
     const {toolboxList} = useSelector(state => state.toolbox);
     const dispatch = useDispatch();
@@ -65,7 +65,7 @@ const MainContentFirstScreen = ({isMobile}) => {
                 <ToolboxFilters 
                     filters={filters} 
                     updateFilter={updateFilter}
-                    isMobile={isMobile} />
+                />
                 <ToolboxList data={filteredToolboxList}/>
             </div>
         </section>

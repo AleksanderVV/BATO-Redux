@@ -8,7 +8,7 @@ import DrawerSideBar from '../../../components/DrawerSideBar/DrawerSideBar';
 import './mainContentSecondScreen.scss';
 import filterMobile from '../../../data/images/icon/filter-mobile.svg';
 
-const MainContentSecondScreen = ({  isMobile,
+const MainContentSecondScreen = ({  
                                     mobileOpen,
                                     toggleDropdownMenuOpen, 
                                     fullPrice, 
@@ -35,7 +35,6 @@ const MainContentSecondScreen = ({  isMobile,
             <div className="container">
                 <div className="row">
                     <DrawerSideBar 
-                        isMobile={isMobile}
                         toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                         fullPrice={fullPrice}
                         handleClick={handleClick}

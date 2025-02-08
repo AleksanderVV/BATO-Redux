@@ -7,7 +7,6 @@ import './drawerFilterToolbox.scss';
 import arrowDown from '../../data/images/icon/arrow-down-black.svg';
 
 const DrawerFilterToolbox = ({
-                              isMobile, 
                               updateFilter
                             }) => {
   const [numberDrawers, setNumberDrawers] = useState([]);
@@ -15,6 +14,7 @@ const DrawerFilterToolbox = ({
   const [handleChooseNumberOfDrawers, setHandleChooseNumberOfDrawers] = useState('all');
 
   const {toolboxList} = useSelector(state => state.toolbox);
+  const {isMobile} = useSelector(state => state.conditions);
   
   const menuRef = useRef(null);
 

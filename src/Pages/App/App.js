@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import useToolboxService from '../../services/ToolboxService';
-import { useSelector } from "react-redux";
+
+import { useSelector, useDispatch } from "react-redux";
+import { checkIsMobile } from "../../actions";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -16,7 +18,7 @@ import './App.scss';
 const App = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isSticky, setIsSticky] = useState(false);
-    const [isMobile, setIsMobile] = useState(null);
+    // const [isMobile, setIsMobile] = useState(null);
     const [drawersData, setDrawersData] = useState({});
     const [selectedAttachedAcc, setSelectedAttachedAcc] = useState([]);
     const [currentDrawer, setCurrentDrawer] = useState(0);
@@ -30,6 +32,8 @@ const App = () => {
     const {getAccessories, getAttachingAccessories} = useToolboxService();
 
     const {currentToolbox} = useSelector(state => state.toolbox);
+    const {isMobile} = useSelector(state => state.conditions);
+    const dispatch = useDispatch();
 
     const [fullPrice, setFullPrice] = useState(currentToolbox?.price || 0);
 
@@ -42,7 +46,7 @@ const App = () => {
 
     useEffect(() => {
 
-        setIsMobile(window.innerWidth < 768);
+        dispatch(checkIsMobile(window.innerWidth < 768));
 
         window.addEventListener('scroll', () => {
 
@@ -178,13 +182,11 @@ const App = () => {
         <>
             <Header 
                 isSticky={isSticky} 
-                isMobile={isMobile}
                 isMenuOpen={isMenuOpen}
                 toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                 quantityItems={quantityItems()}/>
             <TopBar 
                 isSticky={isSticky}
-                isMobile={isMobile}
                 isMenuOpen={isMenuOpen}
                 setMenuOpen={setMenuOpen}
                 toggleDropdownMenuOpen={toggleDropdownMenuOpen}
@@ -201,12 +203,12 @@ const App = () => {
                 <Route path="/" element={
                     <FirstScreen 
                         isSticky={isSticky}
-                        isMobile={isMobile} />} /> 
+                    />
+                } /> 
                 <Route 
                     path="/chooseAccessories" 
                     element={
                         <SecondScreen 
-                            isMobile={isMobile}
                             mobileOpen={mobileOpen}
                             isSticky={isSticky}
                             toggleDropdownMenuOpen={toggleDropdownMenuOpen}

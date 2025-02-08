@@ -2,13 +2,21 @@
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+import { useSelector } from 'react-redux';
+
 import arrowDown from '../../data/images/icon/arrow-down.svg';
 import arrowUpWhite from '../../data/images/icon/arrow-up-white.svg'
 
 import './header.scss';
 
-const Header = ({isMobile, isSticky, isMenuOpen, toggleDropdownMenuOpen, quantityItems}) => {
+const Header = ({
+                    isSticky, 
+                    isMenuOpen, 
+                    toggleDropdownMenuOpen, 
+                    quantityItems
+                }) => {
     const location = useLocation();
+    const { isMobile } = useSelector(state => state.conditions);
 
     return (
         <>
