@@ -1,16 +1,16 @@
+
+
 export const dataFetching = () => {
     return {
         type: 'DATA_FETCHING'
     }
 }
-
 export const toolboxFetched = (toolbox) => {
     return {
         type: 'TOOLBOX_FETCHED',
         payload: toolbox
     }
 }
-
 export const dataFetchingError = () => {
     return {
         type: 'DATA_FETCHING_ERROR'
@@ -38,5 +38,11 @@ export const toolboxWheelsFiltering = () => {
     return {
         type: 'TOOLBOX_WHEELS_FILTER',
         payload: ''
+    }
+}
+export const checkIsMobile = (isMobile) => {
+    return {
+        type: 'CHECK_IS_MOBILE',
+        payload: isMobile
     }
 }

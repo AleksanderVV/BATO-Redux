@@ -23,7 +23,7 @@ const conditions = (state = initialState, action) => {
         case 'CHECK_IS_MOBILE':
             return {
                 ...state,
-                isMobile: true
+                isMobile: action
             }
         default: return state
     }
