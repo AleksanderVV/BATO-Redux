@@ -1,31 +1,25 @@
 import { useHttp } from "../hooks/http.hook";
+import { useCallback } from "react";
 
 const useToolboxService = () => {
-    const {request,
-        //  process, 
-        //  setProcess, 
-        //  clearError
-        } = useHttp();
+    const {request} = useHttp();
 
-    const getAllToolbox = async () => {
+    const getAllToolbox = useCallback(async () => {
         const res = await request(`http://localhost:3001/boxes`);
         return res;
-    }
+    }, [request]);
 
-    const getAccessories = async () => {
+    const getAccessories = useCallback(async () => {
         const acc = await request('http://localhost:3001/accessories');
         return acc;
-    }
+    }, [request]);
 
-    const getAttachingAccessories = async () => {
+    const getAttachingAccessories = useCallback(async () => {
         const attachAcc = await request('http://localhost:3001/attachingAccessories');
         return attachAcc;
-    }
+    }, [request]);
 
     return {
-        // process,
-        // setProcess,
-        // clearError,
         getAllToolbox,
         getAccessories,
         getAttachingAccessories

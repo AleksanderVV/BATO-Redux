@@ -18,7 +18,6 @@ import './App.scss';
 const App = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isSticky, setIsSticky] = useState(false);
-    // const [isMobile, setIsMobile] = useState(null);
     const [drawersData, setDrawersData] = useState({});
     const [selectedAttachedAcc, setSelectedAttachedAcc] = useState([]);
     const [currentDrawer, setCurrentDrawer] = useState(0);

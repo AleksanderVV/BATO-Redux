@@ -22,22 +22,10 @@ export const toolboxChoose = (toolbox) => {
         payload: toolbox
     }
 }
-export const toolboxColorFiltering = () => {
+export const updateToolboxFilter = (filterType, value) => {
     return {
-        type: 'TOOLBOX_COLOR_FILTER',
-        payload: ''
-    }
-}
-export const toolboxDrawersFiltering = () => {
-    return {
-        type: 'TOOLBOX_DRAWERS_FILTER',
-        payload: ''
-    }
-}
-export const toolboxWheelsFiltering = () => {
-    return {
-        type: 'TOOLBOX_WHEELS_FILTER',
-        payload: ''
+        type: 'UPDATE_TOOLBOX_FILTER',
+        payload: {filterType, value}
     }
 }
 export const checkIsMobile = (isMobile) => {

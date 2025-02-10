@@ -2,7 +2,7 @@ import ToolboxFilters from '../../../components/ToolboxFilters/ToolboxFilters';
 import ToolboxList from '../../../components/ToolboxList/ToolboxList';
 
 import useToolboxService from "../../../services/ToolboxService";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 
 import { dataFetching, toolboxFetched, dataFetchingError } from '../../../actions';
@@ -11,15 +11,8 @@ import './mainContentFirstScreen.scss';
 
 const MainContentFirstScreen = () => {
 
-    const {toolboxList} = useSelector(state => state.toolbox);
+    const {toolboxList, toolboxFilters} = useSelector(state => state.toolbox);
     const dispatch = useDispatch();
-
-    const [filteredToolboxList, setFilteredToolboxList] = useState([]);
-    const [filters, setFilters] = useState({
-        wheels: 'all',
-        color: 'all',
-        numberDrawers: 'all'
-    });
 
     const {getAllToolbox} = useToolboxService(); 
   
@@ -28,45 +21,26 @@ const MainContentFirstScreen = () => {
         getAllToolbox()
             .then(data => {
                 dispatch(toolboxFetched(data));
-                setFilteredToolboxList(data);
             })
             .catch(() => dispatch(dataFetchingError()))
-      // eslint-disable-next-line
-    }, []);
+    }, [dispatch, getAllToolbox]);
   
-    const filterToolboxes = (filters) => {
-        const {wheels, color, numberDrawers} = filters;
+    const filterToolboxes = useMemo(() => {
+        const {wheels, color, numberDrawers} = toolboxFilters;
 
-        const filteredData = toolboxList.filter(item => {
-            return (
-                (wheels === 'all' || item.wheels === wheels) &&
-                (color === 'all' || item.color[0] === color) &&
-                (numberDrawers === 'all' || item.numberDrawers === numberDrawers)
-            );
-        });
+        return toolboxList.filter(item => 
+            (wheels === 'all' || item.wheels === wheels) &&
+            (color === 'all' || item.color[0] === color) &&
+            (numberDrawers === 'all' || item.numberDrawers === numberDrawers)
+        )
         
-
-        setFilteredToolboxList(filteredData);
-    }
-
-     // Update filters when a filter value changes
-    const updateFilter = (filterType, value) => {
-        setFilters(prevFilters => {
-            const updatedFilters = {...prevFilters, [filterType]: value};
-            filterToolboxes(updatedFilters);
-            return updatedFilters;
-        });
-    }
-    
+    }, [toolboxList, toolboxFilters])
 
     return (
         <section className="main-boxes">
             <div className="container">
-                <ToolboxFilters 
-                    filters={filters} 
-                    updateFilter={updateFilter}
-                />
-                <ToolboxList data={filteredToolboxList}/>
+                <ToolboxFilters />
+                <ToolboxList data={filterToolboxes}/>
             </div>
         </section>
     )

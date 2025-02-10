@@ -1,6 +1,11 @@
 const initialState = {
     toolboxList: [],
-    currentToolbox: null
+    currentToolbox: null,
+    toolboxFilters: {
+        wheels: 'all',
+        color: 'all',
+        numberDrawers: 'all'
+    }
 }
 
 const toolbox = (state = initialState, action) => {
@@ -15,18 +20,13 @@ const toolbox = (state = initialState, action) => {
                 ...state,
                 currentToolbox: action.payload
             }
-        case 'TOOLBOX_COLOR_FILTER':
+        case 'UPDATE_TOOLBOX_FILTER':
             return {
                 ...state,
-
-            }
-        case 'TOOLBOX_DRAWERS_FILTER':
-            return {
-                ...state
-            }
-        case 'TOOLBOX_WHEELS_FILTER':
-            return {
-                ...state
+                toolboxFilters: {
+                    ...state.toolboxFilters,
+                    [action.payload.filterType]: action.payload.value
+                }
             }
         default: return state
     }

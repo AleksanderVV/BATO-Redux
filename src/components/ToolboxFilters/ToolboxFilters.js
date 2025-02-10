@@ -1,23 +1,32 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { updateToolboxFilter } from '../../actions';
+
 import ColorFilterToolbox from '../ColorFilterToolbox/ColorFilterToolbox';
 import DrawerFilterToolbox from '../DrawersFilterToolbox/DrawerFilterToolbox';
 import WheelsFilterToolbox from '../WheelsFilterToolbox/WheelsFilterToolbox';
 
 import './toolboxFilters.scss';
 
-const ToolboxFilters = ({ filters, updateFilter }) => {
+const ToolboxFilters = () => {
+  const filters = useSelector(state => state.toolbox.toolboxFilters);
+  const dispatch = useDispatch();
+
+  const handleFilterChange = (filterType, value) => {
+    dispatch(updateToolboxFilter(filterType, value));
+  };
 
     return (
         <div className="row">
         <div className="col-12">
           <div className="main-boxes__filter filter-boxes d-flex justify-content-end">
             <DrawerFilterToolbox 
-              updateFilter={value => updateFilter('numberDrawers', value)}/>
+              updateFilter={value => handleFilterChange('numberDrawers', value)}/>
             <ColorFilterToolbox 
               selected={filters.color}
-              updateFilter={value => updateFilter('color', value)}/>
+              updateFilter={value => handleFilterChange('color', value)}/>
             <WheelsFilterToolbox 
               selected={filters.wheels}
-              updateFilter={value => updateFilter('wheels', value)}/>
+              updateFilter={value => handleFilterChange('wheels', value)}/>
           </div>
         </div>
       </div>
