@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import useToolboxService from '../../services/ToolboxService';
 
 import { useSelector, useDispatch } from "react-redux";
-import { checkIsMobile } from "../../actions";
+import { checkIsMobile, checkIsSticky } from "../../actions";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -17,7 +17,7 @@ import './App.scss';
 
 const App = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
-    const [isSticky, setIsSticky] = useState(false);
+    // const [isSticky, setIsSticky] = useState(false);
     const [drawersData, setDrawersData] = useState({});
     const [selectedAttachedAcc, setSelectedAttachedAcc] = useState([]);
     const [currentDrawer, setCurrentDrawer] = useState(0);
@@ -31,7 +31,7 @@ const App = () => {
     const {getAccessories, getAttachingAccessories} = useToolboxService();
 
     const {currentToolbox} = useSelector(state => state.toolbox);
-    const {isMobile} = useSelector(state => state.conditions);
+    const {isMobile, isSticky} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
 
     const [fullPrice, setFullPrice] = useState(currentToolbox?.price || 0);
@@ -49,9 +49,9 @@ const App = () => {
 
         window.addEventListener('scroll', () => {
 
-            if((window.scrollY > 78 && !isMobile) || (window.scrollY > 0 && isMobile)) {
-                setIsSticky(true);
-            } else {setIsSticky(false)}
+            if((window.scrollY > 78 && !isMobile.payload) || (window.scrollY > 0 && isMobile.payload)) {
+                dispatch(checkIsSticky(true));
+            } else {dispatch(checkIsSticky(false))}
 
         });
         // eslint-disable-next-line
@@ -107,7 +107,7 @@ const App = () => {
 
     const handleAccessoryClick = useCallback((accId) => {
         
-        if (isMobile) {
+        if (isMobile.payload) {
             setMobileOpen(true);
         }
 
@@ -143,7 +143,7 @@ const App = () => {
     }, [accessories, calculateRemainingSpace, currentDrawer, isMobile]);
         
     const chooseCurrentAttachedAcc = useCallback((id) => {
-        if (isMobile) {
+        if (isMobile.payload) {
             setMobileOpen(true);
         }
 
@@ -180,12 +180,10 @@ const App = () => {
     return (
         <>
             <Header 
-                isSticky={isSticky} 
                 isMenuOpen={isMenuOpen}
                 toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                 quantityItems={quantityItems()}/>
             <TopBar 
-                isSticky={isSticky}
                 isMenuOpen={isMenuOpen}
                 setMenuOpen={setMenuOpen}
                 toggleDropdownMenuOpen={toggleDropdownMenuOpen}
@@ -200,16 +198,13 @@ const App = () => {
                 quantityItems={quantityItems()} />
             <Routes>
                 <Route path="/" element={
-                    <FirstScreen 
-                        isSticky={isSticky}
-                    />
+                    <FirstScreen />
                 } /> 
                 <Route 
                     path="/chooseAccessories" 
                     element={
                         <SecondScreen 
                             mobileOpen={mobileOpen}
-                            isSticky={isSticky}
                             toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                             handleClick={handleClick}
                             drawersData={drawersData}

@@ -3,11 +3,11 @@ import useBodyID from "../../hooks/useBodyID";
 import MainTitleFirstScreen from "./MainTitleFirstScreen/MainTitleFirstScreen";
 import MainContentFirstScreen from "./MainContentFirstScreen/MainContentFirstScreen";
 
-const FirstScreen = ({isSticky}) =>  {
+const FirstScreen = () =>  {
     useBodyID('main');
     return (
     <>
-        <MainTitleFirstScreen isSticky={isSticky}/>
+        <MainTitleFirstScreen />
         <MainContentFirstScreen />
     </>
 )};

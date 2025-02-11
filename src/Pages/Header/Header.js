@@ -10,18 +10,17 @@ import arrowUpWhite from '../../data/images/icon/arrow-up-white.svg'
 import './header.scss';
 
 const Header = ({
-                    isSticky, 
                     isMenuOpen, 
                     toggleDropdownMenuOpen, 
                     quantityItems
                 }) => {
     const location = useLocation();
-    const { isMobile } = useSelector(state => state.conditions);
+    const { isMobile, isSticky } = useSelector(state => state.conditions);
 
     return (
         <>
             <div className='overlay'></div>
-            <header className={isMobile.payload && isSticky ? 'header result_sticky' : 'header'}>
+            <header className={isMobile.payload && isSticky.payload ? 'header result_sticky' : 'header'}>
                 <div className="container">
                 <div className="row justify-content-between">
                     <div className="col-1 align-middle">

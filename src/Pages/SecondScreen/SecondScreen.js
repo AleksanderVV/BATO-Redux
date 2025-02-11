@@ -5,7 +5,6 @@ import MainContentSecondScreen from "./MainContentSecondScreen/MainContentSecond
 
 const SecondScreen = ({
     mobileOpen,
-    isSticky, 
     toggleDropdownMenuOpen,
     fullPrice,
     handleClick,
@@ -27,8 +26,7 @@ const SecondScreen = ({
 
         return (
                 <>
-                    <MainTitleSecondScreen 
-                        isSticky={isSticky}/>
+                    <MainTitleSecondScreen />
                     <MainContentSecondScreen 
                         mobileOpen={mobileOpen}
                         toggleDropdownMenuOpen={toggleDropdownMenuOpen}

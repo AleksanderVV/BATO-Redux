@@ -6,11 +6,11 @@ import shadowImage from '../../../data/images/box-shadow.png';
 import mouseImage from '../../../data/images/icon/mouse.svg';
 import flagImage from '../../../data/images/icon/flag.svg';
 
-const MainTitleSecondScreen = ({isSticky}) => {
-    const {isMobile} = useSelector(state => state.conditions);
+const MainTitleSecondScreen = () => {
+    const {isMobile, isSticky} = useSelector(state => state.conditions);
     
     return (
-        <section className={`total-main total-accessories ${!isSticky ? '' : isMobile ? '' : 'margin-top'}`}>
+        <section className={`total-main total-accessories ${!isSticky.payload ? '' : isMobile.payload ? '' : 'margin-top'}`}>
             <div className="container d-none d-sm-block">
                 <div className="row">
                     <div className="d-block d-md-none">

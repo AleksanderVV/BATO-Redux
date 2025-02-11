@@ -13,7 +13,6 @@ import arrowUpWhite from '../../data/images/icon/arrow-up-white.svg';
 import cartImage from '../../data/images/icon/cart.svg';
 
 const TopBar = ({
-                isSticky,
                 isMenuOpen, 
                 setMenuOpen, 
                 toggleDropdownMenuOpen, 
@@ -29,7 +28,7 @@ const TopBar = ({
     const dropdownRef = useRef(null);
 
     const {currentToolbox} = useSelector(state => state.toolbox);
-    const { isMobile } = useSelector(state => state.conditions);
+    const { isMobile, isSticky } = useSelector(state => state.conditions);
 
     useEffect(() => {
 
@@ -83,7 +82,7 @@ const TopBar = ({
 
     let resultDropdownClassName = 'result-dropdown';
 
-    resultDropdownClassName = isSticky ? resultDropdownClassName += ' result_sticky' : resultDropdownClassName;
+    resultDropdownClassName = isSticky.payload ? resultDropdownClassName += ' result_sticky' : resultDropdownClassName;
     resultDropdownClassName = isMenuOpen ? resultDropdownClassName += ' open-dropdown' : resultDropdownClassName;
 
     const handleClickTopBar = () => {
@@ -103,8 +102,8 @@ const TopBar = ({
     return (
         <>
             <section 
-            className={`result ${isSticky && !isMobile.payload ? 'result_sticky' : ''}`}
-            style={{marginTop: isSticky && isMobile.payload && location.pathname === '/chooseAccessories' ? '70px' : '0px'}}>
+            className={`result ${isSticky.payload && !isMobile.payload ? 'result_sticky' : ''}`}
+            style={{marginTop: isSticky.payload && isMobile.payload && location.pathname === '/chooseAccessories' ? '70px' : '0px'}}>
                 <div className="container">
                     <div className="row">
                         <div className="col-12 col-lg-8">
