@@ -1,6 +1,7 @@
 const initialState = {
     process: 'waiting',
-    isMobile: false
+    isMobile: false,
+    isSticky: false
 }
 
 const conditions = (state = initialState, action) => {
@@ -24,6 +25,11 @@ const conditions = (state = initialState, action) => {
             return {
                 ...state,
                 isMobile: action
+            }
+        case 'CHECK_IS_STICKY':
+            return {
+                ...state,
+                isSticky: action
             }
         default: return state
     }
