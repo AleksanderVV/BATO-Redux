@@ -90,12 +90,13 @@ const DrawerSideBar = ({
     }
 
     const drawerButtons = Array.from({length: drawersCurrentToolbox}, (_,i) => {
+        
         const drawerDepth = currentToolbox.drawers[i];
-        const drawerCells = Array.from({length: drawerDepth}, (_, i) => (<div key={i} className="nav-img__item"></div>))
+        const drawerCells = Array.from({length: drawerDepth}, (_, i) => (<div key={i} className="nav-img__item"></div>));
 
         const drawersFill = drawersData[i]?.reduce((total, acc) => total + acc.size, 0);
-
-        if (isMobile && +currentDrawer !== i) {
+        
+        if (isMobile.payload && +currentDrawer !== i) {
             return null;
         }
 
