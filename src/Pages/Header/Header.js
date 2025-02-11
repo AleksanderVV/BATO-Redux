@@ -21,7 +21,7 @@ const Header = ({
     return (
         <>
             <div className='overlay'></div>
-            <header className={isMobile && isSticky ? 'header result_sticky' : 'header'}>
+            <header className={isMobile.payload && isSticky ? 'header result_sticky' : 'header'}>
                 <div className="container">
                 <div className="row justify-content-between">
                     <div className="col-1 align-middle">
