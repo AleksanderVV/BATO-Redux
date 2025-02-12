@@ -10,7 +10,6 @@ import filterMobile from '../../../data/images/icon/filter-mobile.svg';
 
 const MainContentSecondScreen = ({  
                                     mobileOpen,
-                                    toggleDropdownMenuOpen, 
                                     fullPrice, 
                                     handleClick,
                                     drawersData,
@@ -35,7 +34,6 @@ const MainContentSecondScreen = ({
             <div className="container">
                 <div className="row">
                     <DrawerSideBar 
-                        toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                         fullPrice={fullPrice}
                         handleClick={handleClick}
                         currentDrawer={currentDrawer}

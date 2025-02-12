@@ -2,20 +2,18 @@
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { checkIsMenuOpen } from '../../actions';
 
 import arrowDown from '../../data/images/icon/arrow-down.svg';
 import arrowUpWhite from '../../data/images/icon/arrow-up-white.svg'
 
 import './header.scss';
 
-const Header = ({
-                    isMenuOpen, 
-                    toggleDropdownMenuOpen, 
-                    quantityItems
-                }) => {
+const Header = ({quantityItems}) => {
     const location = useLocation();
-    const { isMobile, isSticky } = useSelector(state => state.conditions);
+    const { isMobile, isSticky, isMenuOpen } = useSelector(state => state.conditions);
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -31,7 +29,7 @@ const Header = ({
                     <div className="col-6 d-flex justify-content-end align-items-center d-lg-none">
                     <div 
                         className="header__total-item d-flex justify-content-end"
-                        onClick={toggleDropdownMenuOpen}>
+                        onClick={() => dispatch(checkIsMenuOpen(!isMenuOpen))}>
                         <p><span>{ quantityItems || 0}</span> item added</p>
                         {
                         location.pathname === '/chooseAccessories' && !isMenuOpen ?

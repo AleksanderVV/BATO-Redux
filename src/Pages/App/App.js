@@ -16,8 +16,6 @@ import ThirdScreen from '../ThirdScreen/ThirdScreen';
 import './App.scss';
 
 const App = () => {
-    const [isMenuOpen, setMenuOpen] = useState(false);
-    // const [isSticky, setIsSticky] = useState(false);
     const [drawersData, setDrawersData] = useState({});
     const [selectedAttachedAcc, setSelectedAttachedAcc] = useState([]);
     const [currentDrawer, setCurrentDrawer] = useState(0);
@@ -31,7 +29,7 @@ const App = () => {
     const {getAccessories, getAttachingAccessories} = useToolboxService();
 
     const {currentToolbox} = useSelector(state => state.toolbox);
-    const {isMobile, isSticky} = useSelector(state => state.conditions);
+    const {isMobile} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
 
     const [fullPrice, setFullPrice] = useState(currentToolbox?.price || 0);
@@ -56,8 +54,6 @@ const App = () => {
         });
         // eslint-disable-next-line
     }, []);
-
-    const toggleDropdownMenuOpen = () => {setMenuOpen(!isMenuOpen)}
 
     useEffect(() => {
         onRequest();
@@ -180,13 +176,8 @@ const App = () => {
     return (
         <>
             <Header 
-                isMenuOpen={isMenuOpen}
-                toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                 quantityItems={quantityItems()}/>
             <TopBar 
-                isMenuOpen={isMenuOpen}
-                setMenuOpen={setMenuOpen}
-                toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                 currentToolbox={currentToolbox} 
                 handleClick={handleClick}
                 drawersData={drawersData}
@@ -205,7 +196,6 @@ const App = () => {
                     element={
                         <SecondScreen 
                             mobileOpen={mobileOpen}
-                            toggleDropdownMenuOpen={toggleDropdownMenuOpen}
                             handleClick={handleClick}
                             drawersData={drawersData}
                             setDrawersData={setDrawersData}

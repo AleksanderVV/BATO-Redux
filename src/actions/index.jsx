@@ -1,6 +1,3 @@
-import { type } from "@testing-library/user-event/dist/type"
-
-
 export const dataFetching = () => {
     return {
         type: 'DATA_FETCHING'
@@ -39,5 +36,11 @@ export const checkIsSticky = (isSticky) => {
     return {
         type: 'CHECK_IS_STICKY',
         payload: isSticky
+    }
+}
+export const checkIsMenuOpen = (isMenuOpen) => {
+    return {
+        type: 'CHECK_IS_MENU_OPEN',
+        isMenuOpen
     }
 }

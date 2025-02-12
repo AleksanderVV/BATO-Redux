@@ -1,7 +1,8 @@
 const initialState = {
     process: 'waiting',
     isMobile: false,
-    isSticky: false
+    isSticky: false,
+    isMenuOpen: false
 }
 
 const conditions = (state = initialState, action) => {
@@ -30,6 +31,11 @@ const conditions = (state = initialState, action) => {
             return {
                 ...state,
                 isSticky: action
+            }
+        case 'CHECK_IS_MENU_OPEN':
+            return {
+                ...state,
+                isMenuOpen: action.isMenuOpen
             }
         default: return state
     }

@@ -4,7 +4,8 @@ import classNames from 'classnames';
 import TopBarAccessory from '../TopBarAccessory/TopBarAccessory';
 import TopBarAttachedAccessory from '../TopBarAttachedAccessory/TopBarAttachedAccessory';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { checkIsMenuOpen } from '../../actions';
 
 import './topBar.scss';
 
@@ -13,9 +14,6 @@ import arrowUpWhite from '../../data/images/icon/arrow-up-white.svg';
 import cartImage from '../../data/images/icon/cart.svg';
 
 const TopBar = ({
-                isMenuOpen, 
-                setMenuOpen, 
-                toggleDropdownMenuOpen, 
                 handleClick,
                 drawersData,
                 selectedAttachedAcc,
@@ -28,14 +26,15 @@ const TopBar = ({
     const dropdownRef = useRef(null);
 
     const {currentToolbox} = useSelector(state => state.toolbox);
-    const { isMobile, isSticky } = useSelector(state => state.conditions);
+    const { isMobile, isSticky, isMenuOpen } = useSelector(state => state.conditions);
+    const dispatch = useDispatch();
 
     useEffect(() => {
 
         const handleClickOutside = (event) => {
             const overlay = document.querySelector('.overlay');
           if (dropdownRef.current && !dropdownRef.current.contains(event.target) && event.target === overlay) {
-            setMenuOpen(false);
+            dispatch(checkIsMenuOpen(false));
           }
         }
     
@@ -54,7 +53,7 @@ const TopBar = ({
                 return (
                     <div 
                         className="result__total-item d-flex justify-content-end"
-                        onClick={toggleDropdownMenuOpen}>
+                        onClick={() => dispatch(checkIsMenuOpen(!isMenuOpen))}>
                         <p>
                             <span>{quantityItems || 0}</span> accessories
                             <span className="result__total-item-text">, show</span>
@@ -87,7 +86,7 @@ const TopBar = ({
 
     const handleClickTopBar = () => {
         handleClick();
-        setMenuOpen(false);
+        dispatch(checkIsMenuOpen(false));
     }
 
     useEffect(() => {
@@ -186,7 +185,7 @@ const TopBar = ({
                     </div>
                 </div>
                 </div>
-                <div className="result-dropdown__close" onClick={toggleDropdownMenuOpen}>
+                <div className="result-dropdown__close" onClick={() => dispatch(checkIsMenuOpen(!isMenuOpen))}>
             
                 </div>
             </section>

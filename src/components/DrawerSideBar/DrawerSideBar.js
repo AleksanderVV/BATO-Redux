@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { Tab, Nav } from 'react-bootstrap';
 import DrawerViewAccessory from '../DrawerViewAccessory/DrawerViewAccessory';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { checkIsMenuOpen } from '../../actions';
 
 import './drawerSideBar.scss';
 
@@ -14,7 +15,7 @@ import resetImage from '../../data/images/icon/reset.svg';
 import cart from '../../data/images/icon/cart.svg';
 
 const DrawerSideBar = ({
-                        toggleDropdownMenuOpen, 
+                        // toggleDropdownMenuOpen, 
                         fullPrice, 
                         handleClick, 
                         currentDrawer, 
@@ -28,7 +29,8 @@ const DrawerSideBar = ({
                         setOpenChooseDrawers}) => {
 
     const {currentToolbox} = useSelector(state => state.toolbox);
-    const {isMobile} = useSelector(state => state.conditions);
+    const {isMobile, isMenuOpen} = useSelector(state => state.conditions);
+    const dispatch = useDispatch();
 
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');
@@ -223,7 +225,7 @@ const DrawerSideBar = ({
                         </div>
                         <div 
                             className="choose-accessories__drawers-price-show"
-                            onClick={toggleDropdownMenuOpen}>
+                            onClick={() => dispatch(checkIsMenuOpen(!isMenuOpen))}>
                             Show added items
                         </div>
                         </div>
