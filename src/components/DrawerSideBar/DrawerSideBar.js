@@ -15,7 +15,6 @@ import resetImage from '../../data/images/icon/reset.svg';
 import cart from '../../data/images/icon/cart.svg';
 
 const DrawerSideBar = ({
-                        // toggleDropdownMenuOpen, 
                         fullPrice, 
                         handleClick, 
                         currentDrawer, 
@@ -98,7 +97,7 @@ const DrawerSideBar = ({
 
         const drawersFill = drawersData[i]?.reduce((total, acc) => total + acc.size, 0);
         
-        if (isMobile.payload && +currentDrawer !== i) {
+        if (isMobile && +currentDrawer !== i) {
             return null;
         }
 

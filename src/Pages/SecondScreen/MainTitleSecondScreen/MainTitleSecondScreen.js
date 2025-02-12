@@ -10,7 +10,7 @@ const MainTitleSecondScreen = () => {
     const {isMobile, isSticky} = useSelector(state => state.conditions);
     
     return (
-        <section className={`total-main total-accessories ${!isSticky.payload ? '' : isMobile.payload ? '' : 'margin-top'}`}>
+        <section className={`total-main total-accessories ${!isSticky ? '' : isMobile ? '' : 'margin-top'}`}>
             <div className="container d-none d-sm-block">
                 <div className="row">
                     <div className="d-block d-md-none">

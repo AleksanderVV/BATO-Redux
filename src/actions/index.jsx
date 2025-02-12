@@ -29,13 +29,13 @@ export const updateToolboxFilter = (filterType, value) => {
 export const checkIsMobile = (isMobile) => {
     return {
         type: 'CHECK_IS_MOBILE',
-        payload: isMobile
+        isMobile
     }
 }
 export const checkIsSticky = (isSticky) => {
     return {
         type: 'CHECK_IS_STICKY',
-        payload: isSticky
+        isSticky
     }
 }
 export const checkIsMenuOpen = (isMenuOpen) => {

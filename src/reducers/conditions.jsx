@@ -25,12 +25,12 @@ const conditions = (state = initialState, action) => {
         case 'CHECK_IS_MOBILE':
             return {
                 ...state,
-                isMobile: action
+                isMobile: action.isMobile
             }
         case 'CHECK_IS_STICKY':
             return {
                 ...state,
-                isSticky: action
+                isSticky: action.isSticky
             }
         case 'CHECK_IS_MENU_OPEN':
             return {

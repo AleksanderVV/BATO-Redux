@@ -68,7 +68,7 @@ const MainContentSecondScreen = ({
                 </div>
             </div>
             <button 
-                className="choose-accessories__filter-top d-sm-none"
+                className="choose-accessories__filter-top"
                 style={{display: mobileOpen ? 'flex' : 'none'}}
                 onClick={() => setOpenChooseDrawers(true)}
                  >

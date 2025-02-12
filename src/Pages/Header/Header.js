@@ -18,7 +18,7 @@ const Header = ({quantityItems}) => {
     return (
         <>
             <div className='overlay'></div>
-            <header className={isMobile.payload && isSticky.payload ? 'header result_sticky' : 'header'}>
+            <header className={isMobile && isSticky ? 'header result_sticky' : 'header'}>
                 <div className="container">
                 <div className="row justify-content-between">
                     <div className="col-1 align-middle">

@@ -81,7 +81,7 @@ const TopBar = ({
 
     let resultDropdownClassName = 'result-dropdown';
 
-    resultDropdownClassName = isSticky.payload ? resultDropdownClassName += ' result_sticky' : resultDropdownClassName;
+    resultDropdownClassName = isSticky ? resultDropdownClassName += ' result_sticky' : resultDropdownClassName;
     resultDropdownClassName = isMenuOpen ? resultDropdownClassName += ' open-dropdown' : resultDropdownClassName;
 
     const handleClickTopBar = () => {
@@ -101,8 +101,8 @@ const TopBar = ({
     return (
         <>
             <section 
-            className={`result ${isSticky.payload && !isMobile.payload ? 'result_sticky' : ''}`}
-            style={{marginTop: isSticky.payload && isMobile.payload && location.pathname === '/chooseAccessories' ? '70px' : '0px'}}>
+            className={`result ${isSticky && !isMobile ? 'result_sticky' : ''}`}
+            style={{marginTop: isSticky && isMobile && location.pathname === '/chooseAccessories' ? '70px' : '0px'}}>
                 <div className="container">
                     <div className="row">
                         <div className="col-12 col-lg-8">
@@ -112,14 +112,14 @@ const TopBar = ({
                                                     "result__item_first", 
                                                     {"result__item_current": location.pathname === '/'})}>
                                     
-                                    {isMobile.payload ? '01. Toolbox' : '01. Toolbox Selection'}
+                                    {isMobile ? '01. Toolbox' : '01. Toolbox Selection'}
                                 </div>
                                 <div className="result__delimiter flex-fill"></div>
                                 <div className={classNames(
                                                     "result__item", 
                                                     "result__item_second", 
                                                     {"result__item_current": location.pathname === '/chooseAccessories'})}>
-                                    {isMobile.payload ? '02. Accessories' : '02. Accessories Selection'}
+                                    {isMobile ? '02. Accessories' : '02. Accessories Selection'}
                                 </div>
                                 <div className="result__delimiter flex-fill"></div>
                                 <div className={classNames(

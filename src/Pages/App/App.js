@@ -47,7 +47,7 @@ const App = () => {
 
         window.addEventListener('scroll', () => {
 
-            if((window.scrollY > 78 && !isMobile.payload) || (window.scrollY > 0 && isMobile.payload)) {
+            if((window.scrollY > 78 && !isMobile) || (window.scrollY > 0 && isMobile)) {
                 dispatch(checkIsSticky(true));
             } else {dispatch(checkIsSticky(false))}
 
@@ -103,7 +103,7 @@ const App = () => {
 
     const handleAccessoryClick = useCallback((accId) => {
         
-        if (isMobile.payload) {
+        if (isMobile) {
             setMobileOpen(true);
         }
 
@@ -139,7 +139,7 @@ const App = () => {
     }, [accessories, calculateRemainingSpace, currentDrawer, isMobile]);
         
     const chooseCurrentAttachedAcc = useCallback((id) => {
-        if (isMobile.payload) {
+        if (isMobile) {
             setMobileOpen(true);
         }
 
