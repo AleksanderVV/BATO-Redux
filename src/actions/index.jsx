@@ -44,3 +44,9 @@ export const checkIsMenuOpen = (isMenuOpen) => {
         isMenuOpen
     }
 }
+export const checkIsMobileOpen = (isMobileOpen) => {
+    return {
+        type: 'CHECK_IS_MOBILE_OPEN',
+        isMobileOpen
+    }
+}
