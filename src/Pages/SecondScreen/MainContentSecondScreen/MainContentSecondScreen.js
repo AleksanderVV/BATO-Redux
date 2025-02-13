@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Tab } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 import AccessoriesFilters from '../../../components/AccessoriesFilters/AccessoriesFilters';
 import AccessoriesList from '../../../components/AccessoriesList/AccessoriesList';
@@ -9,7 +10,7 @@ import './mainContentSecondScreen.scss';
 import filterMobile from '../../../data/images/icon/filter-mobile.svg';
 
 const MainContentSecondScreen = ({  
-                                    mobileOpen,
+                                    // mobileOpen,
                                     fullPrice, 
                                     handleClick,
                                     drawersData,
@@ -28,6 +29,7 @@ const MainContentSecondScreen = ({
                                     quantityItems}) => {
 
     const [openChooseDrawers, setOpenChooseDrawers] = useState(false);
+    const {isMobileOpen} = useSelector(state => state.conditions);
 
     return (
         <section id="choose-accessories" className="choose-accessories">
@@ -42,7 +44,7 @@ const MainContentSecondScreen = ({
                         setDrawersData={setDrawersData}
                         selectedAttachedAcc={selectedAttachedAcc}
                         deleteAcc={deleteAcc}
-                        mobileOpen={mobileOpen}
+                        // mobileOpen={mobileOpen}
                         openChooseDrawers={openChooseDrawers}
                         setOpenChooseDrawers={setOpenChooseDrawers} />
                     <div className="col-xl-6 col-xxl-8">
@@ -69,7 +71,7 @@ const MainContentSecondScreen = ({
             </div>
             <button 
                 className="choose-accessories__filter-top"
-                style={{display: mobileOpen ? 'flex' : 'none'}}
+                style={{display: isMobileOpen ? 'flex' : 'none'}}
                 onClick={() => setOpenChooseDrawers(true)}
                  >
                 <img src={filterMobile} alt="icon" />

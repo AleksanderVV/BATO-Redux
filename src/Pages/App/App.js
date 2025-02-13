@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import useToolboxService from '../../services/ToolboxService';
 
 import { useSelector, useDispatch } from "react-redux";
-import { checkIsMobile, checkIsSticky } from "../../actions";
+import { checkIsMobile, checkIsSticky, checkIsMobileOpen } from "../../actions";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -24,7 +24,7 @@ const App = () => {
     const [filteredAccessories, setFilteredAccessories] = useState([]);
     const [attachingAccessories, setAttachingAccessories] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [mobileOpen, setMobileOpen] = useState(false);
+    // const [mobileOpen, setMobileOpen] = useState(false);
 
     const {getAccessories, getAttachingAccessories} = useToolboxService();
 
@@ -104,7 +104,7 @@ const App = () => {
     const handleAccessoryClick = useCallback((accId) => {
         
         if (isMobile) {
-            setMobileOpen(true);
+            dispatch(checkIsMobileOpen(true));
         }
 
         setDrawersData((prev) => {
@@ -136,11 +136,11 @@ const App = () => {
 
           return newDrawerData;
         });
-    }, [accessories, calculateRemainingSpace, currentDrawer, isMobile]);
+    }, [accessories, calculateRemainingSpace, currentDrawer, dispatch, isMobile]);
         
     const chooseCurrentAttachedAcc = useCallback((id) => {
         if (isMobile) {
-            setMobileOpen(true);
+            dispatch(checkIsMobileOpen(true));
         }
 
         setSelectedAttachedAcc(prevState => {
@@ -149,7 +149,7 @@ const App = () => {
             }
             return [...prevState, id];
         });
-    },[isMobile]);
+    },[dispatch, isMobile]);
 
     const deleteAcc = useCallback((event) => {
         const drawerAcc = event.target.dataset.drawer;
@@ -195,7 +195,7 @@ const App = () => {
                     path="/chooseAccessories" 
                     element={
                         <SecondScreen 
-                            mobileOpen={mobileOpen}
+                            // mobileOpen={mobileOpen}
                             handleClick={handleClick}
                             drawersData={drawersData}
                             setDrawersData={setDrawersData}

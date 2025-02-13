@@ -23,12 +23,12 @@ const DrawerSideBar = ({
                         setDrawersData,
                         selectedAttachedAcc,
                         deleteAcc,
-                        mobileOpen,
+                        // mobileOpen,
                         openChooseDrawers,
                         setOpenChooseDrawers}) => {
 
     const {currentToolbox} = useSelector(state => state.toolbox);
-    const {isMobile, isMenuOpen} = useSelector(state => state.conditions);
+    const {isMobile, isMenuOpen, isMobileOpen} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
 
     const [isBoxSticky, setIsBoxSticky] = useState(false);
@@ -233,7 +233,7 @@ const DrawerSideBar = ({
             </div>
             <div 
                 className="choose-accessories__drawers-price-button2 align-items-center justify-content-center d-sm-none"
-                style={{display: mobileOpen ? 'flex' : 'none'}}>
+                style={{display: isMobileOpen ? 'flex' : 'none'}}>
                 <button onClick={handleClick} aria-label="Complete selection">
                     <img src={cart} alt="Cart" /> Færdig med valg
                 </button>
