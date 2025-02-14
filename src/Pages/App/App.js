@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import useToolboxService from '../../services/ToolboxService';
 
 import { useSelector, useDispatch } from "react-redux";
-import { checkIsMobile, checkIsSticky, checkIsMobileOpen } from "../../actions";
+import { checkIsMobile, checkIsSticky, checkIsMobileOpen, updateDrawersData } from "../../actions";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -16,7 +16,7 @@ import ThirdScreen from '../ThirdScreen/ThirdScreen';
 import './App.scss';
 
 const App = () => {
-    const [drawersData, setDrawersData] = useState({});
+    // const [drawersData, setDrawersData] = useState({});
     const [selectedAttachedAcc, setSelectedAttachedAcc] = useState([]);
     const [currentDrawer, setCurrentDrawer] = useState(0);
 
@@ -28,6 +28,7 @@ const App = () => {
     const {getAccessories, getAttachingAccessories} = useToolboxService();
 
     const {currentToolbox} = useSelector(state => state.toolbox);
+    const {drawersData} = useSelector(state => state.accessories);
     const {isMobile} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
 
@@ -61,10 +62,10 @@ const App = () => {
 
     useEffect(() => {
         if (location.pathname === "/") {   
-            setDrawersData({});
+            dispatch(updateDrawersData({}));
             setSelectedAttachedAcc([]);
         }
-    },[location.pathname])
+    },[location.pathname, dispatch])
     
     const onRequest = async () => {
         setLoading(true);
@@ -106,7 +107,7 @@ const App = () => {
             dispatch(checkIsMobileOpen(true));
         }
 
-        setDrawersData((prev) => {
+        dispatch(updateDrawersData((prev) => {
           const newDrawerData = { ...prev };
 
           if (!newDrawerData[currentDrawer]) {
@@ -134,7 +135,7 @@ const App = () => {
           }
 
           return newDrawerData;
-        });
+        }));
     }, [accessories, calculateRemainingSpace, currentDrawer, dispatch, isMobile]);
         
     const chooseCurrentAttachedAcc = useCallback((id) => {
@@ -159,14 +160,14 @@ const App = () => {
             return;
         }
 
-        setDrawersData(prev => {
+        dispatch(updateDrawersData(prev => {
             const newDrawerData = { ...prev };
 
             newDrawerData[drawerAcc] = newDrawerData[drawerAcc].filter(i => i.id !== idAcc);
 
             return newDrawerData;
-        })
-    },[drawersData]);
+        }));
+    },[drawersData, dispatch]);
 
     const quantityItems =  useCallback(() => {
         return selectedAttachedAcc.length + Object.values(drawersData).reduce((sum, array) => sum + array.length, 0);
@@ -179,7 +180,7 @@ const App = () => {
             <TopBar 
                 currentToolbox={currentToolbox} 
                 handleClick={handleClick}
-                drawersData={drawersData}
+                // drawersData={drawersData}
                 selectedAttachedAcc={selectedAttachedAcc}
                 attachingAccessories={attachingAccessories}
                 fullPrice={fullPrice}
@@ -195,8 +196,8 @@ const App = () => {
                     element={
                         <SecondScreen 
                             handleClick={handleClick}
-                            drawersData={drawersData}
-                            setDrawersData={setDrawersData}
+                            // drawersData={drawersData}
+                            // setDrawersData={setDrawersData}
                             selectedAttachedAcc={selectedAttachedAcc}
                             handleAccessoryClick={handleAccessoryClick}
                             chooseCurrentAttachedAcc={chooseCurrentAttachedAcc}
@@ -213,7 +214,7 @@ const App = () => {
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 
-                                drawersData={drawersData}
+                                // drawersData={drawersData}
                                 selectedAttachedAcc={selectedAttachedAcc}
                                 fullPrice={fullPrice} />} />
                 </Routes>

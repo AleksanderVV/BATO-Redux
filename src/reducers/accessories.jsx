@@ -7,9 +7,11 @@ const accessories = (state = initialState, action) => {
         case 'UPDATE_DRAWERS_DATA':
             return {
                 ...state,
-                drawersData: action
+                drawersData: action.payload
             }
+        default:
+            return state;
     }
 }
 
-// export default accessories;
+export default accessories;
