@@ -23,7 +23,6 @@ const DrawerSideBar = ({
                         setDrawersData,
                         selectedAttachedAcc,
                         deleteAcc,
-                        // mobileOpen,
                         openChooseDrawers,
                         setOpenChooseDrawers}) => {
 

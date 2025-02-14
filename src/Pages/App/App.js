@@ -24,7 +24,6 @@ const App = () => {
     const [filteredAccessories, setFilteredAccessories] = useState([]);
     const [attachingAccessories, setAttachingAccessories] = useState([]);
     const [loading, setLoading] = useState(true);
-    // const [mobileOpen, setMobileOpen] = useState(false);
 
     const {getAccessories, getAttachingAccessories} = useToolboxService();
 
@@ -195,7 +194,6 @@ const App = () => {
                     path="/chooseAccessories" 
                     element={
                         <SecondScreen 
-                            // mobileOpen={mobileOpen}
                             handleClick={handleClick}
                             drawersData={drawersData}
                             setDrawersData={setDrawersData}

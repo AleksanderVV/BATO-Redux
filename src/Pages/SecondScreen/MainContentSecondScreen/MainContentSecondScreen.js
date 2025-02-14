@@ -10,7 +10,6 @@ import './mainContentSecondScreen.scss';
 import filterMobile from '../../../data/images/icon/filter-mobile.svg';
 
 const MainContentSecondScreen = ({  
-                                    // mobileOpen,
                                     fullPrice, 
                                     handleClick,
                                     drawersData,
@@ -44,7 +43,6 @@ const MainContentSecondScreen = ({
                         setDrawersData={setDrawersData}
                         selectedAttachedAcc={selectedAttachedAcc}
                         deleteAcc={deleteAcc}
-                        // mobileOpen={mobileOpen}
                         openChooseDrawers={openChooseDrawers}
                         setOpenChooseDrawers={setOpenChooseDrawers} />
                     <div className="col-xl-6 col-xxl-8">
