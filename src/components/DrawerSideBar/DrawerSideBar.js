@@ -3,7 +3,7 @@ import { Tab, Nav } from 'react-bootstrap';
 import DrawerViewAccessory from '../DrawerViewAccessory/DrawerViewAccessory';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { checkIsMenuOpen } from '../../actions';
+import { checkIsMenuOpen, updateDrawersData } from '../../actions';
 
 import './drawerSideBar.scss';
 
@@ -19,14 +19,13 @@ const DrawerSideBar = ({
                         handleClick, 
                         currentDrawer, 
                         setCurrentDrawer,
-                        drawersData,
-                        setDrawersData,
                         selectedAttachedAcc,
                         deleteAcc,
                         openChooseDrawers,
                         setOpenChooseDrawers}) => {
 
     const {currentToolbox} = useSelector(state => state.toolbox);
+    const {drawersData} = useSelector(state => state.drawers);
     const {isMobile, isMenuOpen, isMobileOpen} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
 
@@ -82,11 +81,11 @@ const DrawerSideBar = ({
     ));
 
     const resetCurrentDrawer = () => {
-        setDrawersData( prev => {
+        dispatch(updateDrawersData(prev => {
             const updateData = { ...prev};
             delete updateData[currentDrawer];
             return updateData;
-        });
+        }));
     }
 
     const drawerButtons = Array.from({length: drawersCurrentToolbox}, (_,i) => {

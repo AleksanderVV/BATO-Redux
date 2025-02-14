@@ -19,11 +19,11 @@ const AccessoriesList = ({
                             selectedAttachedAcc, 
                             chooseCurrentAttachedAcc,
                             currentDrawer,
-                            drawersData,
                             calculateRemainingSpace,
                             handleAccessoryClick}) => {
     
     const {currentToolbox} = useSelector(state => state.toolbox);
+    const {drawersData} = useSelector(state => state.drawers);
 
     const filteredAccessories = attachingAccessories.filter(acc => 
         currentToolbox?.accessories.includes(Number(acc.id))

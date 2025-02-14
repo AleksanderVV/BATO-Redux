@@ -4,7 +4,10 @@ import toolbox from '../reducers/toolbox';
 import accessories from '../reducers/accessories';
 
 const store = configureStore({
-    reducer: {conditions, toolbox, accessories},
+    reducer: {
+                conditions, 
+                toolbox, 
+                drawers: accessories},
     devTools: process.env.NODE_ENV !== 'production'
 })
 

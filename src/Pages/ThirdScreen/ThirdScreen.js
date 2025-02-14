@@ -5,7 +5,6 @@ import MainContentThirdScreen from "./MainContentThirdScreen/MainContentThirdScr
 
 const ThirdScreen = ({
         currentToolbox, 
-        drawersData, 
         selectedAttachedAcc, 
         fullPrice}) =>  {
     useBodyID('total');
@@ -15,7 +14,6 @@ const ThirdScreen = ({
         <MainTitleThirdScreen />
         <MainContentThirdScreen 
             currentToolbox={currentToolbox}
-            drawersData={drawersData}
             selectedAttachedAcc={selectedAttachedAcc}
             fullPrice={fullPrice} />
     </>

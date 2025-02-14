@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import {v4 as uuidv4} from 'uuid';
 import { Formik, Form, Field,ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useSelector } from 'react-redux';
 
 import './mainContentThirdScreen.scss';
 
@@ -12,7 +13,6 @@ import xIcon from '../../../data/images/icon/x-icon.svg';
 
 const MainContentThirdScreen = ({
         currentToolbox, 
-        drawersData, 
         selectedAttachedAcc,
         fullPrice
     }) => {  
@@ -41,15 +41,14 @@ const MainContentThirdScreen = ({
                 <div ref={priceBoxRef} className="total-result__price-box total-items-box">
                     <div className="total-items-box__header">
                     <p className="total-items-box__name">
-                        {currentToolbox.name}
+                        {currentToolbox?.name}
                     </p>
                     <p className="total-items-box__price">
-                        <span>{currentToolbox.price}</span>,00 EUR
+                        <span>{currentToolbox?.price}</span>,00 EUR
                     </p>
                     </div>
                     <div className="total-items-box__items">
                         <ListAccessories
-                            drawersData={drawersData}
                             selectedAttachedAcc={selectedAttachedAcc} />
                     </div>
                     <div className="total-items-box__total">
@@ -68,8 +67,9 @@ const MainContentThirdScreen = ({
     )
 }
 
-const ListAccessories = ({drawersData, selectedAttachedAcc}) => {
+const ListAccessories = ({selectedAttachedAcc}) => {
 
+    const {drawersData} = useSelector(state => state.drawers);
     if (!drawersData || !selectedAttachedAcc) return null;
     
     return <>

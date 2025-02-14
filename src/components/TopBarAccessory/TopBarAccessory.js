@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+
 import xIconImage from '../../data/images/icon/x-icon.svg';
 import figure1Image from '../../data/images/icon/fig1.svg';
 import figure2Image from '../../data/images/icon/fig2.svg';
@@ -5,7 +7,9 @@ import figure3Image from '../../data/images/icon/fig3.svg';
 import figure4Image from '../../data/images/icon/fig4.svg';
 import figure5Image from '../../data/images/icon/fig5.svg';
 
-const TopBarAccessory = ({drawersData, deleteAcc}) => {
+const TopBarAccessory = ({deleteAcc}) => {
+    const {drawersData} = useSelector(state => state.drawers);
+
     const getFigureImage = (length) => {
         const figures = [figure1Image, figure2Image, figure3Image, figure4Image, figure5Image];
         return figures[length - 1]

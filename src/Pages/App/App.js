@@ -14,6 +14,7 @@ import SecondScreen from '../SecondScreen/SecondScreen';
 import ThirdScreen from '../ThirdScreen/ThirdScreen';
 
 import './App.scss';
+import { clearDrawersData } from "../../reducers/accessories";
 
 const App = () => {
     // const [drawersData, setDrawersData] = useState({});
@@ -28,7 +29,7 @@ const App = () => {
     const {getAccessories, getAttachingAccessories} = useToolboxService();
 
     const {currentToolbox} = useSelector(state => state.toolbox);
-    const {drawersData} = useSelector(state => state.accessories);
+    const {drawersData} = useSelector(state => state.drawers);
     const {isMobile} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
 
@@ -62,7 +63,7 @@ const App = () => {
 
     useEffect(() => {
         if (location.pathname === "/") {   
-            dispatch(updateDrawersData({}));
+            dispatch(clearDrawersData());
             setSelectedAttachedAcc([]);
         }
     },[location.pathname, dispatch])
@@ -107,36 +108,35 @@ const App = () => {
             dispatch(checkIsMobileOpen(true));
         }
 
-        dispatch(updateDrawersData((prev) => {
-          const newDrawerData = { ...prev };
+        const newDrawerData = { ...drawersData };
 
-          if (!newDrawerData[currentDrawer]) {
+        if (!newDrawerData[currentDrawer]) {
             newDrawerData[currentDrawer] = [];
-          }
+        }
 
-          const drawerItems = newDrawerData[currentDrawer];
-          const accessoryIndex = drawerItems.findIndex((acc) => acc.id === accId);
-          const accessory = accessories.find((acc) => acc.id === accId);
-    
-          if (accessoryIndex !== -1) {
+        const drawerItems = newDrawerData[currentDrawer];
+        const accessoryIndex = drawerItems.findIndex((acc) => acc.id === accId);
+        const accessory = accessories.find((acc) => acc.id === accId);
+
+        if (accessoryIndex !== -1) {
             drawerItems.splice(accessoryIndex, 1); // Remove accessory if it already exists
-          } else {
+        } else {
             const remainingSpace = calculateRemainingSpace(drawerItems); 
 
             if (accessory && accessory.size <= remainingSpace) {
                 newDrawerData[currentDrawer].push(accessory); // Add accessory to the drawer
             }
-          }
+        }
 
-          if (drawerItems.length === 0) {
+        if (drawerItems.length === 0) {
             delete newDrawerData[currentDrawer]; // Remove drawer if empty
-          } else {
-            newDrawerData[currentDrawer] = drawerItems;
-          }
+        } else {
+        newDrawerData[currentDrawer] = drawerItems;
+        }
 
-          return newDrawerData;
-        }));
-    }, [accessories, calculateRemainingSpace, currentDrawer, dispatch, isMobile]);
+        dispatch(updateDrawersData(newDrawerData));
+
+    }, [accessories, calculateRemainingSpace, currentDrawer, dispatch, isMobile, drawersData]);
         
     const chooseCurrentAttachedAcc = useCallback((id) => {
         if (isMobile) {
@@ -180,7 +180,6 @@ const App = () => {
             <TopBar 
                 currentToolbox={currentToolbox} 
                 handleClick={handleClick}
-                // drawersData={drawersData}
                 selectedAttachedAcc={selectedAttachedAcc}
                 attachingAccessories={attachingAccessories}
                 fullPrice={fullPrice}
@@ -196,8 +195,6 @@ const App = () => {
                     element={
                         <SecondScreen 
                             handleClick={handleClick}
-                            // drawersData={drawersData}
-                            // setDrawersData={setDrawersData}
                             selectedAttachedAcc={selectedAttachedAcc}
                             handleAccessoryClick={handleAccessoryClick}
                             chooseCurrentAttachedAcc={chooseCurrentAttachedAcc}
@@ -214,7 +211,6 @@ const App = () => {
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 
-                                // drawersData={drawersData}
                                 selectedAttachedAcc={selectedAttachedAcc}
                                 fullPrice={fullPrice} />} />
                 </Routes>
