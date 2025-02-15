@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import useToolboxService from '../../services/ToolboxService';
 
 import { useSelector, useDispatch } from "react-redux";
-import { checkIsMobile, checkIsSticky, checkIsMobileOpen, updateDrawersData } from "../../actions";
+import { checkIsMobile, checkIsSticky, checkIsMobileOpen } from "../../actions";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -14,10 +14,9 @@ import SecondScreen from '../SecondScreen/SecondScreen';
 import ThirdScreen from '../ThirdScreen/ThirdScreen';
 
 import './App.scss';
-import { clearDrawersData } from "../../reducers/accessories";
+import { updateDrawersData, clearDrawersData } from "../../reducers/accessories";
 
 const App = () => {
-    // const [drawersData, setDrawersData] = useState({});
     const [selectedAttachedAcc, setSelectedAttachedAcc] = useState([]);
     const [currentDrawer, setCurrentDrawer] = useState(0);
 
@@ -109,25 +108,21 @@ const App = () => {
         }
 
         const newDrawerData = { ...drawersData };
+        const drawerItems = [...(newDrawerData[currentDrawer] || [])];
 
-        if (!newDrawerData[currentDrawer]) {
-            newDrawerData[currentDrawer] = [];
-        }
-
-        const drawerItems = newDrawerData[currentDrawer];
         const accessoryIndex = drawerItems.findIndex((acc) => acc.id === accId);
         const accessory = accessories.find((acc) => acc.id === accId);
-
+        
         if (accessoryIndex !== -1) {
             drawerItems.splice(accessoryIndex, 1); // Remove accessory if it already exists
         } else {
-            const remainingSpace = calculateRemainingSpace(drawerItems); 
-
+            const remainingSpace = calculateRemainingSpace(drawerItems);     
+            
             if (accessory && accessory.size <= remainingSpace) {
-                newDrawerData[currentDrawer].push(accessory); // Add accessory to the drawer
+                drawerItems.push(accessory); // Add accessory to the drawer
             }
         }
-
+        
         if (drawerItems.length === 0) {
             delete newDrawerData[currentDrawer]; // Remove drawer if empty
         } else {

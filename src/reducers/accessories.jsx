@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    drawersData: {},
+    drawersData: {}
 }
 
 const accessories = createSlice({
@@ -16,17 +16,6 @@ const accessories = createSlice({
         }
     }
 });
-// const accessories = (state = initialState, action) => {
-//     switch (action.type) {
-//         case 'UPDATE_DRAWERS_DATA':
-//             return {
-//                 ...state,
-//                 drawersData: action.payload
-//             }
-//         default:
-//             return state;
-//     }
-// }
 
 export const {updateDrawersData, clearDrawersData} = accessories.actions;
 export default accessories.reducer;
