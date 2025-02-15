@@ -155,13 +155,12 @@ const App = () => {
             return;
         }
 
-        dispatch(updateDrawersData(prev => {
-            const newDrawerData = { ...prev };
-
-            newDrawerData[drawerAcc] = newDrawerData[drawerAcc].filter(i => i.id !== idAcc);
-
-            return newDrawerData;
-        }));
+        const updatedDrawerData = {
+            ...drawersData,
+            [drawerAcc]: drawersData[drawerAcc].filter(i => i.id !== idAcc)
+        };
+    
+        dispatch(updateDrawersData(updatedDrawerData));
     },[drawersData, dispatch]);
 
     const quantityItems =  useCallback(() => {

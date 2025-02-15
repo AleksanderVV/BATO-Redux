@@ -13,9 +13,12 @@ const accessories = createSlice({
         },
         clearDrawersData: (state) => {
             state.drawersData = {}; 
+        },
+        resetCurrentDrawer: (state, action) => {
+            delete state.drawersData[action.payload]; 
         }
     }
 });
 
-export const {updateDrawersData, clearDrawersData} = accessories.actions;
+export const {updateDrawersData, clearDrawersData, resetCurrentDrawer} = accessories.actions;
 export default accessories.reducer;

@@ -3,7 +3,8 @@ import { Tab, Nav } from 'react-bootstrap';
 import DrawerViewAccessory from '../DrawerViewAccessory/DrawerViewAccessory';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { checkIsMenuOpen, updateDrawersData } from '../../actions';
+import { checkIsMenuOpen } from '../../actions';
+import { resetCurrentDrawer } from '../../reducers/accessories';
 
 import './drawerSideBar.scss';
 
@@ -80,13 +81,9 @@ const DrawerSideBar = ({
         </option>
     ));
 
-    const resetCurrentDrawer = () => {
-        dispatch(updateDrawersData(prev => {
-            const updateData = { ...prev};
-            delete updateData[currentDrawer];
-            return updateData;
-        }));
-    }
+    const handleResetCurrentDrawer = () => {
+        dispatch(resetCurrentDrawer(currentDrawer));
+    };
 
     const drawerButtons = Array.from({length: drawersCurrentToolbox}, (_,i) => {
         
@@ -142,7 +139,7 @@ const DrawerSideBar = ({
                     {shelfImage}
                     <p 
                         className={`d-flex align-items-center ${!drawersFill ? 'not-active' : ''}`}
-                        onClick={resetCurrentDrawer}>
+                        onClick={handleResetCurrentDrawer}>
                         <img src={resetImage} alt="" />
                         Reset
                     </p>
