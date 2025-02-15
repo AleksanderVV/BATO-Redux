@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Tab, Nav } from 'react-bootstrap';
 import DrawerViewAccessory from '../DrawerViewAccessory/DrawerViewAccessory';
 
@@ -14,6 +14,20 @@ import drawer4 from '../../data/images/drawer4.webp';
 import drawer5 from '../../data/images/drawer5.webp';
 import resetImage from '../../data/images/icon/reset.svg';
 import cart from '../../data/images/icon/cart.svg';
+
+const useDebouncedCallback = (callback, delay) => {
+    const timeoutRef = useRef(null);
+
+    return useCallback((...args) => {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => {
+            console.log('debounce');
+            
+            callback(...args);
+        }, delay);
+    }, [callback, delay]);
+};
+
 
 const DrawerSideBar = ({
                         fullPrice, 
@@ -33,41 +47,29 @@ const DrawerSideBar = ({
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');
 
+
+    const handleScroll = useCallback(() => {
+        setIsBoxSticky(window.scrollY > 1060);
+    }, []);
+
+    const handleResize = useCallback(() => {
+        if (window.innerWidth > 1600) {
+            setDrawerLeftStyle(`${150 + (window.innerWidth - 1600) / 2}px`);
+        }
+    }, []);
+
+    const debouncedScroll = useDebouncedCallback(handleScroll, 50);
+    const debouncedResize = useDebouncedCallback(handleResize, 100);
+
     useEffect(() => {
-        if (window.innerWidth < 576) {
-            setDrawerLeftStyle('0px');
-        }
-
-        const handleScroll = () => {
-            document.querySelector('.choose-accessories__drawers') && window.scrollY > 1060 ? setIsBoxSticky(true) : setIsBoxSticky(false);
-        }
-
-        const handleResize = () => {
-            if(window.innerWidth > 1600) {
-                setDrawerLeftStyle(`${150 + (window.innerWidth - 1600) / 2}px`)
-            }
-        }
-
-        const debounce = (func, delay) => {
-            let timeout;
-            return (...args) => {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func(...args), delay);
-            };
-        };
-
-        const debouncedScroll = debounce(handleScroll, 10);
-        const debouncedResize = debounce(handleResize, 100);
-
-        window.addEventListener('resize', debouncedResize);
         window.addEventListener('scroll', debouncedScroll);
+        window.addEventListener('resize', debouncedResize);
 
         return () => {
-            window.removeEventListener('resize', debouncedResize);
             window.removeEventListener('scroll', debouncedScroll);
+            window.removeEventListener('resize', debouncedResize);
         };
-
-    }, []);
+    }, [debouncedScroll, debouncedResize]);
 
     if (!currentToolbox) {
         return <p>No toolbox selected</p>;

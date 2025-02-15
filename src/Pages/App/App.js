@@ -42,18 +42,22 @@ const App = () => {
     },[currentToolbox, navigate]);
 
     useEffect(() => {
-
         dispatch(checkIsMobile(window.innerWidth < 768));
-
-        window.addEventListener('scroll', () => {
-
-            if((window.scrollY > 78 && !isMobile) || (window.scrollY > 0 && isMobile)) {
+    
+        const handleScroll = () => {       
+            if ((window.scrollY > 78 && !isMobile) || (window.scrollY > 0 && isMobile)) {
                 dispatch(checkIsSticky(true));
-            } else {dispatch(checkIsSticky(false))}
-
-        });
-        // eslint-disable-next-line
-    }, []);
+            } else {
+                dispatch(checkIsSticky(false));
+            }
+        };
+    
+        window.addEventListener('scroll', handleScroll);
+    
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [dispatch, isMobile]);
 
     useEffect(() => {
         onRequest();
