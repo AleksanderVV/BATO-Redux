@@ -42,6 +42,7 @@ const App = () => {
     },[currentToolbox, navigate]);
 
     useEffect(() => {
+        
         dispatch(checkIsMobile(window.innerWidth < 768));
     
         const handleScroll = () => {       
