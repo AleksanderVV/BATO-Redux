@@ -1,8 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 const initialState = {
     drawersData: {},
-    quantityAcc: 0
+    selectedAttachedAcc: [],
+    quantityItems: 0
 }
 
 const accessories = createSlice({
@@ -18,11 +19,20 @@ const accessories = createSlice({
         resetCurrentDrawer: (state, action) => {
             delete state.drawersData[action.payload]; 
         },
-        updateQuantityAcc: (state, action) => {
-            state.quantityAcc = action.payload;
+        setQuantityItems: (state, action) => {
+            state.quantityItems = action.payload;
         }
     }
 });
 
-export const {updateDrawersData, clearDrawersData, resetCurrentDrawer, updateQuantityAcc} = accessories.actions;
+export const {updateDrawersData, clearDrawersData, resetCurrentDrawer, setQuantityItems} = accessories.actions;
+
+export const selectQuantityItems = createSelector(
+    state => state.accessories.selectedAttachedAcc,
+    state => state.accessories.drawersData,
+    (selectedAttachedAcc, drawersData) => {
+        return selectedAttachedAcc.length + Object.values(drawersData).reduce((sum, array) => sum + array.length, 0);
+    }
+);
+
 export default accessories.reducer;

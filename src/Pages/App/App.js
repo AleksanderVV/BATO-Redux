@@ -14,7 +14,8 @@ import SecondScreen from '../SecondScreen/SecondScreen';
 import ThirdScreen from '../ThirdScreen/ThirdScreen';
 
 import './App.scss';
-import { updateDrawersData, clearDrawersData } from "../../reducers/accessories";
+import { updateDrawersData, clearDrawersData, selectQuantityItems, setQuantityItems } from "../../reducers/accessories";
+// import { use } from "react";
 
 const App = () => {
     const [selectedAttachedAcc, setSelectedAttachedAcc] = useState([]);
@@ -168,14 +169,16 @@ const App = () => {
         dispatch(updateDrawersData(updatedDrawerData));
     },[drawersData, dispatch]);
 
-    const quantityItems =  useCallback(() => {
-        return selectedAttachedAcc.length + Object.values(drawersData).reduce((sum, array) => sum + array.length, 0);
-    },[selectedAttachedAcc,drawersData]);
+    const quantityItems = useSelector(selectQuantityItems);
+
+    useEffect(() => {
+        dispatch(setQuantityItems(quantityItems));
+    }, [quantityItems, dispatch]);
 
     return (
         <>
             <Header 
-                quantityItems={quantityItems()}/>
+                quantityItems={quantityItems}/>
             <TopBar 
                 currentToolbox={currentToolbox} 
                 handleClick={handleClick}
@@ -184,7 +187,7 @@ const App = () => {
                 fullPrice={fullPrice}
                 setFullPrice={setFullPrice}
                 deleteAcc={deleteAcc}
-                quantityItems={quantityItems()} />
+                quantityItems={quantityItems} />
             <Routes>
                 <Route path="/" element={
                     <FirstScreen />
@@ -206,7 +209,7 @@ const App = () => {
                             attachingAccessories={attachingAccessories}
                             fullPrice={fullPrice}
                             deleteAcc={deleteAcc}
-                            quantityItems={quantityItems()} />} />
+                            quantityItems={quantityItems} />} />
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 
