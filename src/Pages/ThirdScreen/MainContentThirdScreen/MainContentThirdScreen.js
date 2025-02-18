@@ -12,12 +12,12 @@ import xIcon from '../../../data/images/icon/x-icon.svg';
 
 
 const MainContentThirdScreen = ({
-        currentToolbox, 
         selectedAttachedAcc,
         fullPrice
     }) => {  
 
     const priceBoxRef = useRef(null);
+    const {currentToolbox} = useSelector(state => state.toolbox);
 
     return (
         <section className="total-result" id="total-result">

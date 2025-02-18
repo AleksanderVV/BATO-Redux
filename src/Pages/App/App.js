@@ -172,7 +172,6 @@ const App = () => {
         <>
             <Header />
             <TopBar 
-                currentToolbox={currentToolbox} 
                 handleClick={handleClick}
                 selectedAttachedAcc={selectedAttachedAcc}
                 attachingAccessories={attachingAccessories}
@@ -203,7 +202,6 @@ const App = () => {
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 
-                                currentToolbox={currentToolbox} 
                                 selectedAttachedAcc={selectedAttachedAcc}
                                 fullPrice={fullPrice} />} />
                 </Routes>
