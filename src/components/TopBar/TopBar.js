@@ -6,6 +6,7 @@ import TopBarAttachedAccessory from '../TopBarAttachedAccessory/TopBarAttachedAc
 
 import { useSelector, useDispatch } from 'react-redux';
 import { checkIsMenuOpen } from '../../actions';
+import { selectQuantityItems } from '../../reducers/accessories';
 
 import './topBar.scss';
 
@@ -19,14 +20,14 @@ const TopBar = ({
                 attachingAccessories,
                 fullPrice,
                 setFullPrice,
-                deleteAcc,
-                quantityItems}) => {    
+                deleteAcc}) => {    
     const location = useLocation();
     const dropdownRef = useRef(null);
 
     const {currentToolbox} = useSelector(state => state.toolbox);
     const { isMobile, isSticky, isMenuOpen } = useSelector(state => state.conditions);
     const { drawersData } = useSelector(state => state.accessories);
+    const quantityItems = useSelector(selectQuantityItems);
 
     const dispatch = useDispatch();
 

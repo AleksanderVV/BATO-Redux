@@ -14,8 +14,7 @@ import SecondScreen from '../SecondScreen/SecondScreen';
 import ThirdScreen from '../ThirdScreen/ThirdScreen';
 
 import './App.scss';
-import { updateDrawersData, clearDrawersData, selectQuantityItems, setQuantityItems } from "../../reducers/accessories";
-// import { use } from "react";
+import { updateDrawersData, clearDrawersData } from "../../reducers/accessories";
 
 const App = () => {
     const [selectedAttachedAcc, setSelectedAttachedAcc] = useState([]);
@@ -169,16 +168,9 @@ const App = () => {
         dispatch(updateDrawersData(updatedDrawerData));
     },[drawersData, dispatch]);
 
-    const quantityItems = useSelector(selectQuantityItems);
-
-    useEffect(() => {
-        dispatch(setQuantityItems(quantityItems));
-    }, [quantityItems, dispatch]);
-
     return (
         <>
-            <Header 
-                quantityItems={quantityItems}/>
+            <Header />
             <TopBar 
                 currentToolbox={currentToolbox} 
                 handleClick={handleClick}
@@ -186,8 +178,7 @@ const App = () => {
                 attachingAccessories={attachingAccessories}
                 fullPrice={fullPrice}
                 setFullPrice={setFullPrice}
-                deleteAcc={deleteAcc}
-                quantityItems={quantityItems} />
+                deleteAcc={deleteAcc} />
             <Routes>
                 <Route path="/" element={
                     <FirstScreen />
@@ -208,8 +199,7 @@ const App = () => {
                             filteredAccessories={filteredAccessories}
                             attachingAccessories={attachingAccessories}
                             fullPrice={fullPrice}
-                            deleteAcc={deleteAcc}
-                            quantityItems={quantityItems} />} />
+                            deleteAcc={deleteAcc}/>} />
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 

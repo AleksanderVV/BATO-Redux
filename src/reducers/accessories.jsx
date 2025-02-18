@@ -18,9 +18,6 @@ const accessories = createSlice({
         },
         resetCurrentDrawer: (state, action) => {
             delete state.drawersData[action.payload]; 
-        },
-        setQuantityItems: (state, action) => {
-            state.quantityItems = action.payload;
         }
     }
 });

@@ -17,8 +17,8 @@ const SecondScreen = ({
     loading,
     filteredAccessories,
     attachingAccessories,
-    deleteAcc,
-    quantityItems}) =>  {
+    deleteAcc
+}) =>  {
         useBodyID('accessories');
 
         return (
@@ -39,7 +39,6 @@ const SecondScreen = ({
                         filteredAccessories={filteredAccessories}
                         attachingAccessories={attachingAccessories}
                         deleteAcc={deleteAcc}
-                        quantityItems={quantityItems}
                          />
                 </>
 )};

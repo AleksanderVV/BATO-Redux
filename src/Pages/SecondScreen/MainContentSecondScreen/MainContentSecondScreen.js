@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Tab } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { selectQuantityItems } from '../../../reducers/accessories';
 
 import AccessoriesFilters from '../../../components/AccessoriesFilters/AccessoriesFilters';
 import AccessoriesList from '../../../components/AccessoriesList/AccessoriesList';
@@ -22,11 +23,11 @@ const MainContentSecondScreen = ({
                                     loading,
                                     filteredAccessories,
                                     attachingAccessories,
-                                    deleteAcc,
-                                    quantityItems}) => {
+                                    deleteAcc}) => {
 
     const [openChooseDrawers, setOpenChooseDrawers] = useState(false);
     const {isMobileOpen} = useSelector(state => state.conditions);
+    const {quantityItems} = useSelector(selectQuantityItems);
 
     return (
         <section id="choose-accessories" className="choose-accessories">

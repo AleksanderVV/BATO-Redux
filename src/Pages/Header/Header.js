@@ -4,16 +4,18 @@ import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { checkIsMenuOpen } from '../../actions';
+import { selectQuantityItems } from '../../reducers/accessories';
 
 import arrowDown from '../../data/images/icon/arrow-down.svg';
 import arrowUpWhite from '../../data/images/icon/arrow-up-white.svg'
 
 import './header.scss';
 
-const Header = ({quantityItems}) => {
+const Header = () => {
     const location = useLocation();
     const { isMobile, isSticky, isMenuOpen } = useSelector(state => state.conditions);
     const dispatch = useDispatch();
+    const quantityItems = useSelector(selectQuantityItems);
 
     return (
         <>
