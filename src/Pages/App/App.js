@@ -28,7 +28,7 @@ const App = () => {
     const {getAccessories, getAttachingAccessories} = useToolboxService();
 
     const {currentToolbox} = useSelector(state => state.toolbox);
-    const {drawersData} = useSelector(state => state.drawers);
+    const {drawersData} = useSelector(state => state.accessories);
     const {isMobile} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
 
@@ -38,8 +38,8 @@ const App = () => {
     const location = useLocation();
 
     const handleClick = useCallback(() => {
-        navigate('/sendForm', {state: {currentToolbox}});
-    },[currentToolbox, navigate]);
+        navigate('/sendForm');
+    },[navigate]);
 
     useEffect(() => {
         
@@ -210,6 +210,7 @@ const App = () => {
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 
+                                currentToolbox={currentToolbox} 
                                 selectedAttachedAcc={selectedAttachedAcc}
                                 fullPrice={fullPrice} />} />
                 </Routes>

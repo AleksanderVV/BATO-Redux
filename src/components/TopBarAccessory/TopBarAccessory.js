@@ -8,7 +8,7 @@ import figure4Image from '../../data/images/icon/fig4.svg';
 import figure5Image from '../../data/images/icon/fig5.svg';
 
 const TopBarAccessory = ({deleteAcc}) => {
-    const {drawersData} = useSelector(state => state.drawers);
+    const {drawersData} = useSelector(state => state.accessories);
 
     const getFigureImage = (length) => {
         const figures = [figure1Image, figure2Image, figure3Image, figure4Image, figure5Image];

@@ -7,7 +7,7 @@ const store = configureStore({
     reducer: {
                 conditions, 
                 toolbox, 
-                drawers: accessories},
+                accessories},
     devTools: process.env.NODE_ENV !== 'production'
 })
 

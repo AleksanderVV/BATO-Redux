@@ -69,7 +69,7 @@ const MainContentThirdScreen = ({
 
 const ListAccessories = ({selectedAttachedAcc}) => {
 
-    const {drawersData} = useSelector(state => state.drawers);
+    const {drawersData} = useSelector(state => state.accessories);
     if (!drawersData || !selectedAttachedAcc) return null;
     
     return <>

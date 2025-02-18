@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    drawersData: {}
+    drawersData: {},
+    quantityAcc: 0
 }
 
 const accessories = createSlice({
-    name: "drawers",
+    name: "accessories",
     initialState,
     reducers: {
         updateDrawersData: (state, action) => {
@@ -16,9 +17,12 @@ const accessories = createSlice({
         },
         resetCurrentDrawer: (state, action) => {
             delete state.drawersData[action.payload]; 
+        },
+        updateQuantityAcc: (state, action) => {
+            state.quantityAcc = action.payload;
         }
     }
 });
 
-export const {updateDrawersData, clearDrawersData, resetCurrentDrawer} = accessories.actions;
+export const {updateDrawersData, clearDrawersData, resetCurrentDrawer, updateQuantityAcc} = accessories.actions;
 export default accessories.reducer;

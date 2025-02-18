@@ -38,7 +38,7 @@ const DrawerSideBar = ({
                         setOpenChooseDrawers}) => {
 
     const {currentToolbox} = useSelector(state => state.toolbox);
-    const {drawersData} = useSelector(state => state.drawers);
+    const {drawersData} = useSelector(state => state.accessories);
     const {isMobile, isMenuOpen, isMobileOpen} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
 

@@ -26,7 +26,7 @@ const TopBar = ({
 
     const {currentToolbox} = useSelector(state => state.toolbox);
     const { isMobile, isSticky, isMenuOpen } = useSelector(state => state.conditions);
-    const { drawersData } = useSelector(state => state.drawers);
+    const { drawersData } = useSelector(state => state.accessories);
 
     const dispatch = useDispatch();
 
