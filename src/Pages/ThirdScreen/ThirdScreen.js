@@ -4,7 +4,6 @@ import MainTitleThirdScreen from "./MainTitleThirdScreen/MainTitleThirdScreen";
 import MainContentThirdScreen from "./MainContentThirdScreen/MainContentThirdScreen";
 
 const ThirdScreen = ({
-        selectedAttachedAcc, 
         fullPrice}) =>  {
     useBodyID('total');
 
@@ -12,7 +11,6 @@ const ThirdScreen = ({
     <>        
         <MainTitleThirdScreen />
         <MainContentThirdScreen 
-            selectedAttachedAcc={selectedAttachedAcc}
             fullPrice={fullPrice} />
     </>
 )};

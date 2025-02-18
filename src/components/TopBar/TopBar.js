@@ -16,7 +16,6 @@ import cartImage from '../../data/images/icon/cart.svg';
 
 const TopBar = ({
                 handleClick,
-                selectedAttachedAcc,
                 attachingAccessories,
                 fullPrice,
                 setFullPrice,
@@ -26,7 +25,7 @@ const TopBar = ({
 
     const {currentToolbox} = useSelector(state => state.toolbox);
     const { isMobile, isSticky, isMenuOpen } = useSelector(state => state.conditions);
-    const { drawersData } = useSelector(state => state.accessories);
+    const { drawersData, selectedAttachedAcc } = useSelector(state => state.accessories);
     const quantityItems = useSelector(selectQuantityItems);
 
     const dispatch = useDispatch();
@@ -162,7 +161,6 @@ const TopBar = ({
                                     {<TopBarAccessory 
                                         deleteAcc={deleteAcc} />}
                                     {<TopBarAttachedAccessory 
-                                        selectedAttachedAcc={selectedAttachedAcc}
                                         attachingAccessories={attachingAccessories}/>}
                             </div>
                         </div>

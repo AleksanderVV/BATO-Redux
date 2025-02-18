@@ -1,6 +1,10 @@
+import { useSelector } from 'react-redux';
+
 import xIconImage from '../../data/images/icon/x-icon.svg';
 
-const TopBarAttachedAccessory = ({selectedAttachedAcc, attachingAccessories}) => {
+const TopBarAttachedAccessory = ({ attachingAccessories}) => {
+    const { selectedAttachedAcc } = useSelector(state => state.accessories);
+
     const titleAttachedAcc = selectedAttachedAcc.length !== 0 ? <div className="accessory-selected__drawer-number d-flex align-items-start flex-shrink-0 pt-3">
                                 Attaching accessories
                             </div> : '';

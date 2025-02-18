@@ -12,7 +12,6 @@ import xIcon from '../../../data/images/icon/x-icon.svg';
 
 
 const MainContentThirdScreen = ({
-        selectedAttachedAcc,
         fullPrice
     }) => {  
 
@@ -48,8 +47,7 @@ const MainContentThirdScreen = ({
                     </p>
                     </div>
                     <div className="total-items-box__items">
-                        <ListAccessories
-                            selectedAttachedAcc={selectedAttachedAcc} />
+                        <ListAccessories />
                     </div>
                     <div className="total-items-box__total">
                     <p className="total-items-box__name">
@@ -67,9 +65,9 @@ const MainContentThirdScreen = ({
     )
 }
 
-const ListAccessories = ({selectedAttachedAcc}) => {
+const ListAccessories = () => {
 
-    const {drawersData} = useSelector(state => state.accessories);
+    const {drawersData, selectedAttachedAcc} = useSelector(state => state.accessories);
     if (!drawersData || !selectedAttachedAcc) return null;
     
     return <>

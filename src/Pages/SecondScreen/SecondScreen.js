@@ -7,9 +7,7 @@ const SecondScreen = ({
     mobileOpen,
     fullPrice,
     handleClick,
-    selectedAttachedAcc,
     handleAccessoryClick,
-    chooseCurrentAttachedAcc,
     currentDrawer,
     setCurrentDrawer,
     calculateRemainingSpace,
@@ -28,9 +26,7 @@ const SecondScreen = ({
                         mobileOpen={mobileOpen}
                         fullPrice={fullPrice}
                         handleClick={handleClick}
-                        selectedAttachedAcc={selectedAttachedAcc}
                         handleAccessoryClick={handleAccessoryClick}
-                        chooseCurrentAttachedAcc={chooseCurrentAttachedAcc}
                         currentDrawer={currentDrawer}
                         setCurrentDrawer={setCurrentDrawer}
                         calculateRemainingSpace={calculateRemainingSpace}

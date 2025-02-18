@@ -4,7 +4,7 @@ import DrawerViewAccessory from '../DrawerViewAccessory/DrawerViewAccessory';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { checkIsMenuOpen } from '../../actions';
-import { resetCurrentDrawer } from '../../reducers/accessories';
+import { resetCurrentDrawer, selectQuantityItems } from '../../reducers/accessories';
 
 import './drawerSideBar.scss';
 
@@ -32,7 +32,6 @@ const DrawerSideBar = ({
                         handleClick, 
                         currentDrawer, 
                         setCurrentDrawer,
-                        selectedAttachedAcc,
                         deleteAcc,
                         openChooseDrawers,
                         setOpenChooseDrawers}) => {
@@ -41,6 +40,8 @@ const DrawerSideBar = ({
     const {drawersData} = useSelector(state => state.accessories);
     const {isMobile, isMenuOpen, isMobileOpen} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
+
+    const quantityItems = useSelector(selectQuantityItems);
 
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');
@@ -156,8 +157,6 @@ const DrawerSideBar = ({
     const handleMobileDrawerChange = (event) => {
         setCurrentDrawer(event.target.value);
     };
-
-    const quantityItems =  selectedAttachedAcc.length + Object.values(drawersData).reduce((sum, array) => sum + array.length, 0);
 
     return (
         <div className="col-xl-6 col-xxl-4">

@@ -50,9 +50,3 @@ export const checkIsMobileOpen = (isMobileOpen) => {
         isMobileOpen
     }
 }
-// export const updateDrawersData = (drawersData) => {
-//     return {
-//         type: 'UPDATE_DRAWERS_DATA',
-//         payload: drawersData
-//     }
-// }

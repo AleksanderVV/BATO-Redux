@@ -1,6 +1,9 @@
-// import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useCallback } from 'react';
 import { Tab } from 'react-bootstrap';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { checkIsMobileOpen } from '../../actions';
+import {setSelectedAttachedAcc} from '../../reducers/accessories';
 
 import accImage from '../../data/images/accessory-1.png';
 import accImageSmall from '../../data/images/accessory-1-small.png';
@@ -16,14 +19,15 @@ import d8919 from '../../data/images/d-8919.jpg';
 const AccessoriesList = ({
                             accessories, 
                             attachingAccessories, 
-                            selectedAttachedAcc, 
-                            chooseCurrentAttachedAcc,
                             currentDrawer,
                             calculateRemainingSpace,
                             handleAccessoryClick}) => {
     
     const {currentToolbox} = useSelector(state => state.toolbox);
-    const {drawersData} = useSelector(state => state.accessories);
+    const {drawersData, selectedAttachedAcc} = useSelector(state => state.accessories);
+    const {isMobile} = useSelector(state => state.conditions);
+
+    const dispatch = useDispatch();
 
     const filteredAccessories = attachingAccessories.filter(acc => 
         currentToolbox?.accessories.includes(Number(acc.id))
@@ -112,6 +116,14 @@ const AccessoriesList = ({
                 </div>
         )})
     };
+
+    const chooseCurrentAttachedAcc = useCallback((id) => {
+        if (isMobile) {
+            dispatch(checkIsMobileOpen(true));
+        }
+        
+        dispatch(setSelectedAttachedAcc(id));
+    },[dispatch, isMobile]);
 
     return (
         <>

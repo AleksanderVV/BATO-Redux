@@ -137,19 +137,6 @@ const App = () => {
         dispatch(updateDrawersData(newDrawerData));
 
     }, [accessories, calculateRemainingSpace, currentDrawer, dispatch, isMobile, drawersData]);
-        
-    const chooseCurrentAttachedAcc = useCallback((id) => {
-        if (isMobile) {
-            dispatch(checkIsMobileOpen(true));
-        }
-
-        setSelectedAttachedAcc(prevState => {
-            if (prevState.includes(id)) {
-                return prevState.filter(accId => accId !== id)
-            }
-            return [...prevState, id];
-        });
-    },[dispatch, isMobile]);
 
     const deleteAcc = useCallback((event) => {
         const drawerAcc = event.target.dataset.drawer;
@@ -173,7 +160,6 @@ const App = () => {
             <Header />
             <TopBar 
                 handleClick={handleClick}
-                selectedAttachedAcc={selectedAttachedAcc}
                 attachingAccessories={attachingAccessories}
                 fullPrice={fullPrice}
                 setFullPrice={setFullPrice}
@@ -187,9 +173,7 @@ const App = () => {
                     element={
                         <SecondScreen 
                             handleClick={handleClick}
-                            selectedAttachedAcc={selectedAttachedAcc}
                             handleAccessoryClick={handleAccessoryClick}
-                            chooseCurrentAttachedAcc={chooseCurrentAttachedAcc}
                             currentDrawer={currentDrawer}
                             setCurrentDrawer={setCurrentDrawer}
                             calculateRemainingSpace={calculateRemainingSpace}
@@ -202,7 +186,6 @@ const App = () => {
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 
-                                selectedAttachedAcc={selectedAttachedAcc}
                                 fullPrice={fullPrice} />} />
                 </Routes>
             <Footer />

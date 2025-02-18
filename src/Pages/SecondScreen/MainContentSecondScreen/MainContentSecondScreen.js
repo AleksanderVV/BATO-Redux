@@ -13,9 +13,7 @@ import filterMobile from '../../../data/images/icon/filter-mobile.svg';
 const MainContentSecondScreen = ({  
                                     fullPrice, 
                                     handleClick,
-                                    selectedAttachedAcc,
                                     handleAccessoryClick,
-                                    chooseCurrentAttachedAcc,
                                     currentDrawer,
                                     setCurrentDrawer,
                                     calculateRemainingSpace,
@@ -38,7 +36,6 @@ const MainContentSecondScreen = ({
                         handleClick={handleClick}
                         currentDrawer={currentDrawer}
                         setCurrentDrawer={setCurrentDrawer}
-                        selectedAttachedAcc={selectedAttachedAcc}
                         deleteAcc={deleteAcc}
                         openChooseDrawers={openChooseDrawers}
                         setOpenChooseDrawers={setOpenChooseDrawers} />
@@ -50,8 +47,6 @@ const MainContentSecondScreen = ({
                                 <AccessoriesList 
                                     accessories={filteredAccessories} 
                                     attachingAccessories={attachingAccessories}
-                                    selectedAttachedAcc={selectedAttachedAcc}
-                                    chooseCurrentAttachedAcc={chooseCurrentAttachedAcc}
                                     currentDrawer={currentDrawer}
                                     calculateRemainingSpace={calculateRemainingSpace}
                                     handleAccessoryClick={handleAccessoryClick}/>

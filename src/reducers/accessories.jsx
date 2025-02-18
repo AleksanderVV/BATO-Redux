@@ -18,11 +18,23 @@ const accessories = createSlice({
         },
         resetCurrentDrawer: (state, action) => {
             delete state.drawersData[action.payload]; 
-        }
+        },
+        setSelectedAttachedAcc: (state, action) => {
+            const id = action.payload;
+            if (state.selectedAttachedAcc.includes(id)) {
+                state.selectedAttachedAcc = state.selectedAttachedAcc.filter(accId => accId !== id);
+            } else {
+                state.selectedAttachedAcc = [...state.selectedAttachedAcc, id];
+            }
+        },
     }
 });
 
-export const {updateDrawersData, clearDrawersData, resetCurrentDrawer, setQuantityItems} = accessories.actions;
+export const {
+                updateDrawersData, 
+                clearDrawersData, 
+                resetCurrentDrawer, 
+                setSelectedAttachedAcc} = accessories.actions;
 
 export const selectQuantityItems = createSelector(
     state => state.accessories.selectedAttachedAcc,
