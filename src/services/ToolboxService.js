@@ -9,21 +9,25 @@ const useToolboxService = () => {
         return res;
     }, [request]);
 
-    const getAccessories = useCallback(async () => {
-        const acc = await request('http://localhost:3001/accessories');
-        return acc;
-    }, [request]);
-
-    const getAttachingAccessories = useCallback(async () => {
-        const attachAcc = await request('http://localhost:3001/attachingAccessories');
-        return attachAcc;
-    }, [request]);
-
-    return {
-        getAllToolbox,
-        getAccessories,
-        getAttachingAccessories
-    }
+    return {getAllToolbox}
 }
 
+const httpRequest = async (url) => {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch ${url}`);
+    }
+    return await response.json();
+};
+
+// Функции для использования вне хуков
+const getAccessoriesDirect = async () => {
+    return await httpRequest('http://localhost:3001/accessories');
+};
+
+const getAttachingAccessoriesDirect = async () => {
+    return await httpRequest('http://localhost:3001/attachingAccessories');
+};
+
+export { getAccessoriesDirect, getAttachingAccessoriesDirect };
 export default useToolboxService;

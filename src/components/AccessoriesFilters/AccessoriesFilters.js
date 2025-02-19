@@ -1,8 +1,23 @@
+import { useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setFilteredAccessories } from '../../reducers/accessories';
+
 import { Nav } from 'react-bootstrap';
 
 import './accessoriesFilters.scss';
 
-const AccessoriesFilters = ({searchAcc}) => {
+const AccessoriesFilters = () => {
+    const {accessories} = useSelector(state => state.accessories);
+    const dispatch = useDispatch();
+
+    const searchAcc = useCallback((event) => {
+        const searchValue = event.target.value.toLowerCase();
+        const filteredAccessories = accessories
+            .filter(accessories.filter(acc => 
+                acc.name.toLowerCase().includes(searchValue) || acc.id.includes(searchValue)));
+
+        dispatch(setFilteredAccessories(filteredAccessories));
+    }, [accessories, dispatch]);
 
     return (
         <>

@@ -1,9 +1,13 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Tab } from 'react-bootstrap';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { checkIsMobileOpen } from '../../actions';
-import {setSelectedAttachedAcc} from '../../reducers/accessories';
+import {
+        setSelectedAttachedAcc, 
+        updateDrawersData, 
+        onRequest 
+    } from '../../reducers/accessories';
 
 import accImage from '../../data/images/accessory-1.png';
 import accImageSmall from '../../data/images/accessory-1-small.png';
@@ -17,24 +21,67 @@ import d8940 from '../../data/images/d-8940.jpg';
 import d8919 from '../../data/images/d-8919.jpg';
 
 const AccessoriesList = ({
-                            accessories, 
-                            attachingAccessories, 
                             currentDrawer,
-                            calculateRemainingSpace,
-                            handleAccessoryClick}) => {
+                            calculateRemainingSpace
+                        }) => {
     
     const {currentToolbox} = useSelector(state => state.toolbox);
-    const {drawersData, selectedAttachedAcc} = useSelector(state => state.accessories);
+    const {
+            drawersData, 
+            selectedAttachedAcc, 
+            attachingAccessories, 
+            accessories,
+            loading,
+            error
+        } = useSelector(state => state.accessories);
     const {isMobile} = useSelector(state => state.conditions);
 
     const dispatch = useDispatch();
 
-    const filteredAccessories = attachingAccessories.filter(acc => 
+    useEffect(() => {
+        if(!loading && accessories.length === 0) {
+            dispatch(onRequest());
+        }
+      }, [dispatch, loading, accessories.length]);
+
+    const filteredAttachedAccessories = attachingAccessories.filter(acc => 
         currentToolbox?.accessories.includes(Number(acc.id))
     );
 
-    
     const currentDrawerLength = currentToolbox?.drawers[currentDrawer];
+
+    const handleAccessoryClick = useCallback((accId) => {
+        
+        if (isMobile) {
+            dispatch(checkIsMobileOpen(true));
+        }
+
+        const newDrawerData = { ...drawersData };
+        const drawerItems = [...(newDrawerData[currentDrawer] || [])];
+
+        const accessoryIndex = drawerItems.findIndex((acc) => acc.id === accId);
+        const accessory = accessories.find((acc) => acc.id === accId);
+        
+        if (accessoryIndex !== -1) {
+            drawerItems.splice(accessoryIndex, 1); // Remove accessory if it already exists
+        } else {
+            const remainingSpace = calculateRemainingSpace(drawerItems);     
+            
+            if (accessory && accessory.size <= remainingSpace) {
+                drawerItems.push(accessory); // Add accessory to the drawer
+            }
+        }
+        
+        if (drawerItems.length === 0) {
+            delete newDrawerData[currentDrawer]; // Remove drawer if empty
+        } else {
+        newDrawerData[currentDrawer] = drawerItems;
+        }
+
+        dispatch(updateDrawersData(newDrawerData));
+
+    }, [accessories, calculateRemainingSpace, currentDrawer, dispatch, isMobile, drawersData]);
+
 
     const currentSizeAcc = (size = null) => {
         const currentDrawerItems = drawersData[currentDrawer] || [];
@@ -156,8 +203,8 @@ const AccessoriesList = ({
             </div>
             <div className="choose-accessories__cards-attaching accessory-cards d-flex flex-wrap justify-content-between">
                 {
-                    filteredAccessories.length > 0 ? (
-                        filteredAccessories.map((acc,id) => {
+                    filteredAttachedAccessories.length > 0 ? (
+                        filteredAttachedAccessories.map((acc,id) => {
                             const isSelected = selectedAttachedAcc.includes(acc.id);
 
                             return (

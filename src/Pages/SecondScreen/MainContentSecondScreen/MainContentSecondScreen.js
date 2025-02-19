@@ -13,18 +13,14 @@ import filterMobile from '../../../data/images/icon/filter-mobile.svg';
 const MainContentSecondScreen = ({  
                                     fullPrice, 
                                     handleClick,
-                                    handleAccessoryClick,
                                     currentDrawer,
                                     setCurrentDrawer,
                                     calculateRemainingSpace,
-                                    searchAcc,
-                                    loading,
-                                    filteredAccessories,
-                                    attachingAccessories,
                                     deleteAcc}) => {
 
     const [openChooseDrawers, setOpenChooseDrawers] = useState(false);
     const {isMobileOpen} = useSelector(state => state.conditions);
+    const {loading} = useSelector(state => state.accessories);
     const {quantityItems} = useSelector(selectQuantityItems);
 
     return (
@@ -42,14 +38,12 @@ const MainContentSecondScreen = ({
                     <div className="col-xl-6 col-xxl-8">
                         <div className="choose-accessories__select">
                         <Tab.Container defaultActiveKey={'all'}>
-                            <AccessoriesFilters searchAcc={searchAcc}/>
+                            <AccessoriesFilters />
                             {!loading ? (
                                 <AccessoriesList 
-                                    accessories={filteredAccessories} 
-                                    attachingAccessories={attachingAccessories}
                                     currentDrawer={currentDrawer}
                                     calculateRemainingSpace={calculateRemainingSpace}
-                                    handleAccessoryClick={handleAccessoryClick}/>
+                                />
                             ) : (
                                 <p>Loading accessories...</p>
                             )}

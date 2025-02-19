@@ -69,30 +69,55 @@ const ListAccessories = () => {
 
     const {drawersData, selectedAttachedAcc} = useSelector(state => state.accessories);
     if (!drawersData || !selectedAttachedAcc) return null;
-    
-    return <>
-                {Object.entries(drawersData).map(([key,array]) => {
-                    if (array.length === 0) return null;
 
-                    return (
-                        <div key={uuidv4()}>{
-                        array.map(acc => (
-                            <div key={uuidv4()} className="total-items-box_item">
-                                <div className="total-items-box__name d-flex justify-content-between">
-                                    <p>{acc.name}</p>
-                                    <div className="total-items-box__close d-none"><img src={xIcon} alt="close" /></div>
-                                </div>
-                                <div className="total-items-box__price d-flex">
-                                    {acc.price} EUR
-                                    <p className="d-flex d-none justify-content-center align-items-center">
-                                        <img src={xIcon} className="delete_item" alt="delete" />
-                                    </p>
-                                </div>
-                            </div>
-                        ))}</div>
-                    );
-                })}
-    </>
+    const selectedAccList = Object.entries(drawersData).map(([key,array]) => {
+        if (array.length === 0) return null;
+
+        return (
+            <div key={uuidv4()}>{
+            array.map(acc => (
+                <div key={uuidv4()} className="total-items-box_item">
+                    <div className="total-items-box__name d-flex justify-content-between">
+                        <p>{acc.name}</p>
+                        <div className="total-items-box__close d-none"><img src={xIcon} alt="close" /></div>
+                    </div>
+                    <div className="total-items-box__price d-flex">
+                        {acc.price} EUR
+                        <p className="d-flex d-none justify-content-center align-items-center">
+                            <img src={xIcon} className="delete_item" alt="delete" />
+                        </p>
+                    </div>
+                </div>
+            ))}</div>
+        );
+    });
+
+    // const selectedAttachedAccList = selectedAttachedAcc.map(accId => {
+    //     const acc = accessories.find(acc => acc.id === accId);
+        
+    //     return (
+    //         <div key={uuidv4()} className="total-items-box_item">
+    //             <div className="total-items-box__name d-flex justify-content-between">
+    //                 <p>{acc.name}</p>
+    //                 <div className="total-items-box__close d-none"><img src={xIcon} alt="close" /></div>
+    //             </div>
+    //             <div className="total-items-box__price d-flex">
+    //                 {acc.price} EUR
+    //                 <p className="d-flex d-none justify-content-center align-items-center">
+    //                     <img src={xIcon} className="delete_item" alt="delete" />
+    //                 </p>
+    //             </div>
+    //         </div>
+    //     )
+    // });
+    
+    return  <>
+                {selectedAccList ? selectedAccList : null}
+                {/* {selectedAttachedAcc
+                    ? selectedAttachedAccList
+                    : null
+                } */}
+            </>
 };
 
 const FormSend = ({priceBoxRef}) => {

@@ -1,9 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
-import useToolboxService from '../../services/ToolboxService';
 
 import { useSelector, useDispatch } from "react-redux";
-import { checkIsMobile, checkIsSticky, checkIsMobileOpen } from "../../actions";
+import { checkIsMobile, checkIsSticky } from "../../actions";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -18,13 +17,6 @@ import { updateDrawersData, clearDrawersData, clearSelectedAttachedAcc } from ".
 
 const App = () => {
     const [currentDrawer, setCurrentDrawer] = useState(0);
-
-    const [accessories, setAccessories] = useState([]);
-    const [filteredAccessories, setFilteredAccessories] = useState([]);
-    const [attachingAccessories, setAttachingAccessories] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    const {getAccessories, getAttachingAccessories} = useToolboxService();
 
     const {currentToolbox} = useSelector(state => state.toolbox);
     const {drawersData} = useSelector(state => state.accessories);
@@ -60,39 +52,11 @@ const App = () => {
     }, [dispatch, isMobile]);
 
     useEffect(() => {
-        onRequest();
-        // eslint-disable-next-line
-    }, []);
-
-    useEffect(() => {
         if (location.pathname === "/") {   
             dispatch(clearDrawersData());
             dispatch(clearSelectedAttachedAcc());
         }
     },[location.pathname, dispatch])
-    
-    const onRequest = async () => {
-        setLoading(true);
-        try {
-            const acc = await getAccessories();
-            const attachingAcc = await getAttachingAccessories();
-            setAccessories(acc);
-            setFilteredAccessories(acc);
-            setAttachingAccessories(attachingAcc);
-        } catch (error) {
-            console.error('Failed to fetch accessories');
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    const searchAcc = useCallback((event) => {
-        const searchValue = event.target.value.toLowerCase();
-
-        setFilteredAccessories(
-            accessories.filter(acc => acc.name.toLowerCase().includes(searchValue) || acc.id.includes(searchValue))
-        )
-    }, [accessories]);
 
     // Function to calculate remaining space in the current drawer
     const calculateRemainingSpace = useCallback((drawerItems) => {
@@ -104,38 +68,6 @@ const App = () => {
 
         return remainingSpace;
     }, [currentToolbox, currentDrawer]);
-
-    const handleAccessoryClick = useCallback((accId) => {
-        
-        if (isMobile) {
-            dispatch(checkIsMobileOpen(true));
-        }
-
-        const newDrawerData = { ...drawersData };
-        const drawerItems = [...(newDrawerData[currentDrawer] || [])];
-
-        const accessoryIndex = drawerItems.findIndex((acc) => acc.id === accId);
-        const accessory = accessories.find((acc) => acc.id === accId);
-        
-        if (accessoryIndex !== -1) {
-            drawerItems.splice(accessoryIndex, 1); // Remove accessory if it already exists
-        } else {
-            const remainingSpace = calculateRemainingSpace(drawerItems);     
-            
-            if (accessory && accessory.size <= remainingSpace) {
-                drawerItems.push(accessory); // Add accessory to the drawer
-            }
-        }
-        
-        if (drawerItems.length === 0) {
-            delete newDrawerData[currentDrawer]; // Remove drawer if empty
-        } else {
-        newDrawerData[currentDrawer] = drawerItems;
-        }
-
-        dispatch(updateDrawersData(newDrawerData));
-
-    }, [accessories, calculateRemainingSpace, currentDrawer, dispatch, isMobile, drawersData]);
 
     const deleteAcc = useCallback((event) => {
         const drawerAcc = event.target.dataset.drawer;
@@ -159,7 +91,6 @@ const App = () => {
             <Header />
             <TopBar 
                 handleClick={handleClick}
-                attachingAccessories={attachingAccessories}
                 fullPrice={fullPrice}
                 setFullPrice={setFullPrice}
                 deleteAcc={deleteAcc} />
@@ -172,14 +103,9 @@ const App = () => {
                     element={
                         <SecondScreen 
                             handleClick={handleClick}
-                            handleAccessoryClick={handleAccessoryClick}
                             currentDrawer={currentDrawer}
                             setCurrentDrawer={setCurrentDrawer}
                             calculateRemainingSpace={calculateRemainingSpace}
-                            searchAcc={searchAcc}
-                            loading={loading}
-                            filteredAccessories={filteredAccessories}
-                            attachingAccessories={attachingAccessories}
                             fullPrice={fullPrice}
                             deleteAcc={deleteAcc}/>} />
                 <Route 
