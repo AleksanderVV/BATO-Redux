@@ -8,7 +8,7 @@ const SecondScreen = ({
     handleClick,
     currentDrawer,
     setCurrentDrawer,
-    calculateRemainingSpace,
+    // calculateRemainingSpace,
     deleteAcc
 }) =>  {
         useBodyID('accessories');
@@ -21,7 +21,7 @@ const SecondScreen = ({
                         handleClick={handleClick}
                         currentDrawer={currentDrawer}
                         setCurrentDrawer={setCurrentDrawer}
-                        calculateRemainingSpace={calculateRemainingSpace}
+                        // calculateRemainingSpace={calculateRemainingSpace}
                         deleteAcc={deleteAcc}
                          />
                 </>

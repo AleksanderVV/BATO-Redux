@@ -22,7 +22,7 @@ import d8919 from '../../data/images/d-8919.jpg';
 
 const AccessoriesList = ({
                             currentDrawer,
-                            calculateRemainingSpace
+                            // calculateRemainingSpace
                         }) => {
     
     const {currentToolbox} = useSelector(state => state.toolbox);
@@ -37,6 +37,17 @@ const AccessoriesList = ({
     const {isMobile} = useSelector(state => state.conditions);
 
     const dispatch = useDispatch();
+
+    // Function to calculate remaining space in the current drawer
+    const calculateRemainingSpace = useCallback((drawerItems) => {
+        let remainingSpace = currentToolbox?.drawers[currentDrawer]; // Total space in a drawer
+
+        drawerItems.forEach((item) => {
+            remainingSpace -= item.size;
+        });
+
+        return remainingSpace;
+    }, [currentToolbox, currentDrawer]);
 
     useEffect(() => {
         if(!loading && accessories.length === 0) {

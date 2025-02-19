@@ -58,17 +58,6 @@ const App = () => {
         }
     },[location.pathname, dispatch])
 
-    // Function to calculate remaining space in the current drawer
-    const calculateRemainingSpace = useCallback((drawerItems) => {
-        let remainingSpace = currentToolbox?.drawers[currentDrawer]; // Total space in a drawer
-
-        drawerItems.forEach((item) => {
-            remainingSpace -= item.size;
-        });
-
-        return remainingSpace;
-    }, [currentToolbox, currentDrawer]);
-
     const deleteAcc = useCallback((event) => {
         const drawerAcc = event.target.dataset.drawer;
         const idAcc = event.target.dataset.id;
@@ -105,7 +94,7 @@ const App = () => {
                             handleClick={handleClick}
                             currentDrawer={currentDrawer}
                             setCurrentDrawer={setCurrentDrawer}
-                            calculateRemainingSpace={calculateRemainingSpace}
+                            // calculateRemainingSpace={calculateRemainingSpace}
                             fullPrice={fullPrice}
                             deleteAcc={deleteAcc}/>} />
                 <Route 
