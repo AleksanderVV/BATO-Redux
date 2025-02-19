@@ -8,11 +8,17 @@ const TopBarAttachedAccessory = ({ attachingAccessories}) => {
     const titleAttachedAcc = selectedAttachedAcc.length !== 0 ? <div className="accessory-selected__drawer-number d-flex align-items-start flex-shrink-0 pt-3">
                                 Attaching accessories
                             </div> : '';
-    const attachedAccList = selectedAttachedAcc ? selectedAttachedAcc.map((item,i) => {
+    
+    const attachedAccList = selectedAttachedAcc.length !== 0 ? selectedAttachedAcc.map((item,i) => {
         const currentAcc = attachingAccessories.filter(acc => acc.id === item)[0];    
         
         return (
-            <div key={i} className="accessory-selected__data d-flex align-items-center justify-content-between" data-id={currentAcc.id} data-number-drawer="none">
+            <div 
+                key={i} 
+                className="accessory-selected__data d-flex align-items-center justify-content-between" 
+                data-id={currentAcc.id} 
+                data-number-drawer="none"
+            >
                 <div className="accessory-selected__data-name">
                 <span>{currentAcc.name}</span>
                 <span className="d-sm-none">EVA {currentAcc.size}/3</span>

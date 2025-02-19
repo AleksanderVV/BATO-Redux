@@ -14,10 +14,9 @@ import SecondScreen from '../SecondScreen/SecondScreen';
 import ThirdScreen from '../ThirdScreen/ThirdScreen';
 
 import './App.scss';
-import { updateDrawersData, clearDrawersData } from "../../reducers/accessories";
+import { updateDrawersData, clearDrawersData, clearSelectedAttachedAcc } from "../../reducers/accessories";
 
 const App = () => {
-    const [selectedAttachedAcc, setSelectedAttachedAcc] = useState([]);
     const [currentDrawer, setCurrentDrawer] = useState(0);
 
     const [accessories, setAccessories] = useState([]);
@@ -68,7 +67,7 @@ const App = () => {
     useEffect(() => {
         if (location.pathname === "/") {   
             dispatch(clearDrawersData());
-            setSelectedAttachedAcc([]);
+            dispatch(clearSelectedAttachedAcc());
         }
     },[location.pathname, dispatch])
     

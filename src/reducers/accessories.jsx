@@ -27,6 +27,9 @@ const accessories = createSlice({
                 state.selectedAttachedAcc = [...state.selectedAttachedAcc, id];
             }
         },
+        clearSelectedAttachedAcc: (state) => {
+            state.selectedAttachedAcc = [];
+        }
     }
 });
 
@@ -34,7 +37,8 @@ export const {
                 updateDrawersData, 
                 clearDrawersData, 
                 resetCurrentDrawer, 
-                setSelectedAttachedAcc} = accessories.actions;
+                setSelectedAttachedAcc,
+                clearSelectedAttachedAcc} = accessories.actions;
 
 export const selectQuantityItems = createSelector(
     state => state.accessories.selectedAttachedAcc,
