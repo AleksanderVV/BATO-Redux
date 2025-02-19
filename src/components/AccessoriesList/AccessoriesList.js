@@ -22,7 +22,6 @@ import d8919 from '../../data/images/d-8919.jpg';
 
 const AccessoriesList = ({
                             currentDrawer,
-                            // calculateRemainingSpace
                         }) => {
     
     const {currentToolbox} = useSelector(state => state.toolbox);

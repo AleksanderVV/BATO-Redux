@@ -15,7 +15,6 @@ const MainContentSecondScreen = ({
                                     handleClick,
                                     currentDrawer,
                                     setCurrentDrawer,
-                                    // calculateRemainingSpace,
                                     deleteAcc}) => {
 
     const [openChooseDrawers, setOpenChooseDrawers] = useState(false);
@@ -42,7 +41,6 @@ const MainContentSecondScreen = ({
                             {!loading ? (
                                 <AccessoriesList 
                                     currentDrawer={currentDrawer}
-                                    // calculateRemainingSpace={calculateRemainingSpace}
                                 />
                             ) : (
                                 <p>Loading accessories...</p>

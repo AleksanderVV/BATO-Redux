@@ -94,7 +94,6 @@ const App = () => {
                             handleClick={handleClick}
                             currentDrawer={currentDrawer}
                             setCurrentDrawer={setCurrentDrawer}
-                            // calculateRemainingSpace={calculateRemainingSpace}
                             fullPrice={fullPrice}
                             deleteAcc={deleteAcc}/>} />
                 <Route 
