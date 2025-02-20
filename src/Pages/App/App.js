@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 import { checkIsMobile, checkIsSticky } from "../../actions";
@@ -22,12 +22,7 @@ const App = () => {
     const {isMobile} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
 
-    const navigate = useNavigate();
     const location = useLocation();
-
-    const handleClick = useCallback(() => {
-        navigate('/sendForm');
-    },[navigate]);
 
     useEffect(() => {
         
@@ -75,9 +70,7 @@ const App = () => {
     return (
         <>
             <Header />
-            <TopBar 
-                handleClick={handleClick}
-                deleteAcc={deleteAcc} />
+            <TopBar deleteAcc={deleteAcc} />
             <Routes>
                 <Route path="/" element={
                     <FirstScreen />
@@ -86,7 +79,6 @@ const App = () => {
                     path="/chooseAccessories" 
                     element={
                         <SecondScreen 
-                            handleClick={handleClick}
                             currentDrawer={currentDrawer}
                             setCurrentDrawer={setCurrentDrawer}
                             deleteAcc={deleteAcc}/>} />

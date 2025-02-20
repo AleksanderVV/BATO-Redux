@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Tab, Nav } from 'react-bootstrap';
 import DrawerViewAccessory from '../DrawerViewAccessory/DrawerViewAccessory';
+import { useNavigate } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { checkIsMenuOpen } from '../../actions';
@@ -28,8 +29,6 @@ const useDebouncedCallback = (callback, delay) => {
 
 
 const DrawerSideBar = ({
-                        // fullPrice, 
-                        handleClick, 
                         currentDrawer, 
                         setCurrentDrawer,
                         deleteAcc,
@@ -40,6 +39,7 @@ const DrawerSideBar = ({
     const {drawersData, fullPrice} = useSelector(state => state.accessories);
     const {isMobile, isMenuOpen, isMobileOpen} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const quantityItems = useSelector(selectQuantityItems);
 
@@ -208,7 +208,7 @@ const DrawerSideBar = ({
                     </div>
                     <div className="choose-accessories__drawers-price-info d-flex justify-content-between">
                         <div className="choose-accessories__drawers-price-button align-items-center justify-content-center d-none d-sm-flex">
-                        <button onClick={handleClick}  aria-label="Complete selection">
+                        <button onClick={() => navigate('/sendForm')}  aria-label="Complete selection">
                             <img src={cart} alt="Cart" /> Færdig med valg
                         </button>
                         </div>
@@ -228,7 +228,7 @@ const DrawerSideBar = ({
             <div 
                 className="choose-accessories__drawers-price-button2 align-items-center justify-content-center d-sm-none"
                 style={{display: isMobileOpen ? 'flex' : 'none'}}>
-                <button onClick={handleClick} aria-label="Complete selection">
+                <button onClick={() => navigate('sendForm')} aria-label="Complete selection">
                     <img src={cart} alt="Cart" /> Færdig med valg
                 </button>
             </div>

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import TopBarAccessory from '../TopBarAccessory/TopBarAccessory';
 import TopBarAttachedAccessory from '../TopBarAttachedAccessory/TopBarAttachedAccessory';
@@ -14,10 +14,9 @@ import arrowDown from '../../data/images/icon/arrow-down.svg';
 import arrowUpWhite from '../../data/images/icon/arrow-up-white.svg';
 import cartImage from '../../data/images/icon/cart.svg';
 
-const TopBar = ({
-                handleClick,
-                deleteAcc}) => {    
+const TopBar = ({deleteAcc}) => {    
     const location = useLocation();
+    const navigate = useNavigate();
     const dropdownRef = useRef(null);
 
     const {currentToolbox} = useSelector(state => state.toolbox);
@@ -87,7 +86,7 @@ const TopBar = ({
     resultDropdownClassName = isMenuOpen ? resultDropdownClassName += ' open-dropdown' : resultDropdownClassName;
 
     const handleClickTopBar = () => {
-        handleClick();
+        navigate('/sendForm');
         dispatch(checkIsMenuOpen(false));
     }
 
