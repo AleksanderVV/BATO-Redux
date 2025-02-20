@@ -4,7 +4,6 @@ import MainTitleSecondScreen from "./MainTitleSecondScreen/MainTitleSecondScreen
 import MainContentSecondScreen from "./MainContentSecondScreen/MainContentSecondScreen";
 
 const SecondScreen = ({
-    fullPrice,
     handleClick,
     currentDrawer,
     setCurrentDrawer,
@@ -16,7 +15,6 @@ const SecondScreen = ({
                 <>
                     <MainTitleSecondScreen />
                     <MainContentSecondScreen 
-                        fullPrice={fullPrice}
                         handleClick={handleClick}
                         currentDrawer={currentDrawer}
                         setCurrentDrawer={setCurrentDrawer}

@@ -11,12 +11,11 @@ import mailSendBlackImage from '../../../data/images/icon/mail-send-black.svg';
 import xIcon from '../../../data/images/icon/x-icon.svg';
 
 
-const MainContentThirdScreen = ({
-        fullPrice
-    }) => {  
+const MainContentThirdScreen = () => {  
 
     const priceBoxRef = useRef(null);
     const {currentToolbox} = useSelector(state => state.toolbox);
+    const {fullPrice} = useSelector(state => state.accessories);
 
     return (
         <section className="total-result" id="total-result">

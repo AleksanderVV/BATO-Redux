@@ -6,7 +6,7 @@ import TopBarAttachedAccessory from '../TopBarAttachedAccessory/TopBarAttachedAc
 
 import { useSelector, useDispatch } from 'react-redux';
 import { checkIsMenuOpen } from '../../actions';
-import { selectQuantityItems } from '../../reducers/accessories';
+import { selectQuantityItems, setFullPrice } from '../../reducers/accessories';
 
 import './topBar.scss';
 
@@ -16,16 +16,17 @@ import cartImage from '../../data/images/icon/cart.svg';
 
 const TopBar = ({
                 handleClick,
-                // attachingAccessories,
-                fullPrice,
-                setFullPrice,
                 deleteAcc}) => {    
     const location = useLocation();
     const dropdownRef = useRef(null);
 
     const {currentToolbox} = useSelector(state => state.toolbox);
     const { isMobile, isSticky, isMenuOpen } = useSelector(state => state.conditions);
-    const { drawersData, selectedAttachedAcc, attachingAccessories } = useSelector(state => state.accessories);
+    const { 
+            drawersData, 
+            selectedAttachedAcc, 
+            attachingAccessories,
+            fullPrice } = useSelector(state => state.accessories);
     const quantityItems = useSelector(selectQuantityItems);
 
     const dispatch = useDispatch();
@@ -96,8 +97,8 @@ const TopBar = ({
                 .reduce((total, item) => total + item.price, 0);
         const accessoriesPrice = Object.values(drawersData).flat().reduce((total, item) => total + item.price, 0);
         
-        setFullPrice((currentToolbox?.price || 0) + attachedAccPrice + accessoriesPrice)
-    },[selectedAttachedAcc, attachingAccessories, currentToolbox, drawersData, setFullPrice])
+        dispatch(setFullPrice((currentToolbox?.price || 0) + attachedAccPrice + accessoriesPrice));
+    },[selectedAttachedAcc, attachingAccessories, currentToolbox, drawersData, dispatch])
 
     return (
         <>

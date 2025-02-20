@@ -30,8 +30,7 @@ const AccessoriesList = ({
             selectedAttachedAcc, 
             attachingAccessories, 
             accessories,
-            loading,
-            error
+            loading
         } = useSelector(state => state.accessories);
     const {isMobile} = useSelector(state => state.conditions);
 

@@ -23,7 +23,8 @@ const initialState = {
     filteredAccessories: [],
     attachingAccessories: [],
     loading: false,
-    error: null
+    error: null,
+    fullPrice: 0
 }
 
 const accessories = createSlice({
@@ -55,6 +56,9 @@ const accessories = createSlice({
         },
         setFilteredAccessories: (state, action) => {
             state.filteredAccessories = action.payload;
+        },
+        setFullPrice: (state, action) => {
+            state.fullPrice = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -83,7 +87,8 @@ export const {
                 setSelectedAttachedAcc,
                 clearSelectedAttachedAcc,
                 setFilteredAccessories,
-                setAccessories} = accessories.actions;
+                setAccessories,
+                setFullPrice} = accessories.actions;
 
 export const selectQuantityItems = createSelector(
     state => state.accessories.selectedAttachedAcc,

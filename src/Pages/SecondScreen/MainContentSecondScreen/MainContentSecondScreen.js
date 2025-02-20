@@ -11,7 +11,7 @@ import './mainContentSecondScreen.scss';
 import filterMobile from '../../../data/images/icon/filter-mobile.svg';
 
 const MainContentSecondScreen = ({  
-                                    fullPrice, 
+                                    // fullPrice, 
                                     handleClick,
                                     currentDrawer,
                                     setCurrentDrawer,
@@ -27,7 +27,7 @@ const MainContentSecondScreen = ({
             <div className="container">
                 <div className="row">
                     <DrawerSideBar 
-                        fullPrice={fullPrice}
+                        // fullPrice={fullPrice}
                         handleClick={handleClick}
                         currentDrawer={currentDrawer}
                         setCurrentDrawer={setCurrentDrawer}

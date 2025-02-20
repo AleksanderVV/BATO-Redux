@@ -18,12 +18,9 @@ import { updateDrawersData, clearDrawersData, clearSelectedAttachedAcc } from ".
 const App = () => {
     const [currentDrawer, setCurrentDrawer] = useState(0);
 
-    const {currentToolbox} = useSelector(state => state.toolbox);
     const {drawersData} = useSelector(state => state.accessories);
     const {isMobile} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
-
-    const [fullPrice, setFullPrice] = useState(currentToolbox?.price || 0);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -80,8 +77,6 @@ const App = () => {
             <Header />
             <TopBar 
                 handleClick={handleClick}
-                fullPrice={fullPrice}
-                setFullPrice={setFullPrice}
                 deleteAcc={deleteAcc} />
             <Routes>
                 <Route path="/" element={
@@ -94,12 +89,12 @@ const App = () => {
                             handleClick={handleClick}
                             currentDrawer={currentDrawer}
                             setCurrentDrawer={setCurrentDrawer}
-                            fullPrice={fullPrice}
                             deleteAcc={deleteAcc}/>} />
                 <Route 
                     path="/sendForm" 
                     element={<ThirdScreen 
-                                fullPrice={fullPrice} />} />
+                                // fullPrice={fullPrice} 
+                            />} />
                 </Routes>
             <Footer />
         </>
