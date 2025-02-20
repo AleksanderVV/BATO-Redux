@@ -20,9 +20,7 @@ import d8909 from '../../data/images/d-8909.jpg';
 import d8940 from '../../data/images/d-8940.jpg';
 import d8919 from '../../data/images/d-8919.jpg';
 
-const AccessoriesList = ({
-                            currentDrawer,
-                        }) => {
+const AccessoriesList = () => {
     
     const {currentToolbox} = useSelector(state => state.toolbox);
     const {
@@ -30,7 +28,8 @@ const AccessoriesList = ({
             selectedAttachedAcc, 
             attachingAccessories, 
             accessories,
-            loading
+            loading,
+            currentDrawer
         } = useSelector(state => state.accessories);
     const {isMobile} = useSelector(state => state.conditions);
 

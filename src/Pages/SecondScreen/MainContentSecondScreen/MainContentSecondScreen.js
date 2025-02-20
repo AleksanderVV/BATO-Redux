@@ -10,10 +10,7 @@ import DrawerSideBar from '../../../components/DrawerSideBar/DrawerSideBar';
 import './mainContentSecondScreen.scss';
 import filterMobile from '../../../data/images/icon/filter-mobile.svg';
 
-const MainContentSecondScreen = ({  
-                                    currentDrawer,
-                                    setCurrentDrawer,
-                                    deleteAcc}) => {
+const MainContentSecondScreen = ({deleteAcc}) => {
 
     const [openChooseDrawers, setOpenChooseDrawers] = useState(false);
     const {isMobileOpen} = useSelector(state => state.conditions);
@@ -25,8 +22,6 @@ const MainContentSecondScreen = ({
             <div className="container">
                 <div className="row">
                     <DrawerSideBar 
-                        currentDrawer={currentDrawer}
-                        setCurrentDrawer={setCurrentDrawer}
                         deleteAcc={deleteAcc}
                         openChooseDrawers={openChooseDrawers}
                         setOpenChooseDrawers={setOpenChooseDrawers} />
@@ -35,9 +30,7 @@ const MainContentSecondScreen = ({
                         <Tab.Container defaultActiveKey={'all'}>
                             <AccessoriesFilters />
                             {!loading ? (
-                                <AccessoriesList 
-                                    currentDrawer={currentDrawer}
-                                />
+                                <AccessoriesList />
                             ) : (
                                 <p>Loading accessories...</p>
                             )}

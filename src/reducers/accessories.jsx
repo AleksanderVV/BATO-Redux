@@ -24,7 +24,8 @@ const initialState = {
     attachingAccessories: [],
     loading: false,
     error: null,
-    fullPrice: 0
+    fullPrice: 0,
+    currentDrawer: 0
 }
 
 const accessories = createSlice({
@@ -59,6 +60,9 @@ const accessories = createSlice({
         },
         setFullPrice: (state, action) => {
             state.fullPrice = action.payload;
+        },
+        setCurrentDrawer: (state, action) => {
+            state.currentDrawer = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -88,7 +92,9 @@ export const {
                 clearSelectedAttachedAcc,
                 setFilteredAccessories,
                 setAccessories,
-                setFullPrice} = accessories.actions;
+                setFullPrice,
+                setCurrentDrawer
+            } = accessories.actions;
 
 export const selectQuantityItems = createSelector(
     state => state.accessories.selectedAttachedAcc,

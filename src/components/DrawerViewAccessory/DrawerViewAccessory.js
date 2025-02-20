@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import accSize1Image from '../../data/images/accessory-size-1.jpg';
 import accSize2Image from '../../data/images/accessory-size-2.jpg';
 import accSize3Image from '../../data/images/accessory-size-3.jpg';
 
-const DrawerViewAccessory = ({ drawersData, deleteAcc, currentToolbox, currentDrawer }) => {
+const DrawerViewAccessory = ({ deleteAcc }) => {
+    const {drawersData, currentDrawer} = useSelector(state => state.accessories);
+    const {currentToolbox} = useSelector(state => state.toolbox);
+
     const [layoutConfig, setLayoutConfig] = useState({
         pointTop: window.innerWidth > 575 ? 47 : 37,
         stepPoint: window.innerWidth > 575 ? 134 : 105,

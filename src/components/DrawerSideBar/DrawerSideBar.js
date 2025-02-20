@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { checkIsMenuOpen } from '../../actions';
-import { resetCurrentDrawer, selectQuantityItems } from '../../reducers/accessories';
+import { resetCurrentDrawer, selectQuantityItems, setCurrentDrawer } from '../../reducers/accessories';
 
 import './drawerSideBar.scss';
 
@@ -29,14 +29,12 @@ const useDebouncedCallback = (callback, delay) => {
 
 
 const DrawerSideBar = ({
-                        currentDrawer, 
-                        setCurrentDrawer,
                         deleteAcc,
                         openChooseDrawers,
                         setOpenChooseDrawers}) => {
 
     const {currentToolbox} = useSelector(state => state.toolbox);
-    const {drawersData, fullPrice} = useSelector(state => state.accessories);
+    const {drawersData, fullPrice, currentDrawer} = useSelector(state => state.accessories);
     const {isMobile, isMenuOpen, isMobileOpen} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -131,11 +129,7 @@ const DrawerSideBar = ({
             return (
                 <Tab.Pane eventKey={i} key={i}>
                     <div className="choose-accessories__drawers-content drawers-content">
-                        <DrawerViewAccessory 
-                            drawersData={drawersData}
-                            deleteAcc={deleteAcc}
-                            currentToolbox={currentToolbox}
-                            currentDrawer={currentDrawer} />
+                        <DrawerViewAccessory deleteAcc={deleteAcc} />
                     </div>
                     {shelfImage}
                     <p 
@@ -155,7 +149,7 @@ const DrawerSideBar = ({
     }
 
     const handleMobileDrawerChange = (event) => {
-        setCurrentDrawer(event.target.value);
+        dispatch(setCurrentDrawer(event.target.value));
     };
 
     return (
@@ -173,17 +167,17 @@ const DrawerSideBar = ({
                 </div>
                 <div className="choose-accessories__drawers-tabs">
                     <div className="choose-accessories__drawers-wrapper d-flex align-items-start justify-content-center justify-content-xl-start">
-                        <Tab.Container defaultActiveKey={currentDrawer} onSelect={selectedKey => setCurrentDrawer(selectedKey)}>
+                        <Tab.Container defaultActiveKey={currentDrawer} onSelect={selectedKey => dispatch(setCurrentDrawer(selectedKey))}>
                             <Nav variant='pills' className='flex-column'>
                                 <p className="d-none d-sm-block">Drawer</p>
                                 {drawerButtons}
                                 <div 
                                     className="nav-list_top d-sm-none d-flex justify-content-center align-items-center"
-                                    onClick={() => (currentDrawer >= 0 && currentDrawer < drawersCurrentToolbox - 1) ? setCurrentDrawer(+currentDrawer + 1) : null}>
+                                    onClick={() => (currentDrawer >= 0 && currentDrawer < drawersCurrentToolbox - 1) ? dispatch(setCurrentDrawer(+currentDrawer + 1)) : null}>
                                 </div>
                                 <div 
                                     className="nav-list_bottom d-sm-none d-flex justify-content-center align-items-center"
-                                    onClick={() => (currentDrawer > 0 && currentDrawer < drawersCurrentToolbox) ? setCurrentDrawer(+currentDrawer - 1) : null}>
+                                    onClick={() => (currentDrawer > 0 && currentDrawer < drawersCurrentToolbox) ? dispatch(setCurrentDrawer(+currentDrawer - 1)) : null}>
                                 </div>
                                 <div className="d-sm-none">
                                     <select id="mobileTabsSelect" value={currentDrawer} onChange={handleMobileDrawerChange}>

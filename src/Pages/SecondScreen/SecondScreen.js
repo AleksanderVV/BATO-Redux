@@ -4,8 +4,6 @@ import MainTitleSecondScreen from "./MainTitleSecondScreen/MainTitleSecondScreen
 import MainContentSecondScreen from "./MainContentSecondScreen/MainContentSecondScreen";
 
 const SecondScreen = ({
-    currentDrawer,
-    setCurrentDrawer,
     deleteAcc
 }) =>  {
         useBodyID('accessories');
@@ -14,8 +12,6 @@ const SecondScreen = ({
                 <>
                     <MainTitleSecondScreen />
                     <MainContentSecondScreen 
-                        currentDrawer={currentDrawer}
-                        setCurrentDrawer={setCurrentDrawer}
                         deleteAcc={deleteAcc}
                          />
                 </>

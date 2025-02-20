@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -16,8 +16,6 @@ import './App.scss';
 import { updateDrawersData, clearDrawersData, clearSelectedAttachedAcc } from "../../reducers/accessories";
 
 const App = () => {
-    const [currentDrawer, setCurrentDrawer] = useState(0);
-
     const {drawersData} = useSelector(state => state.accessories);
     const {isMobile} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
@@ -79,8 +77,6 @@ const App = () => {
                     path="/chooseAccessories" 
                     element={
                         <SecondScreen 
-                            currentDrawer={currentDrawer}
-                            setCurrentDrawer={setCurrentDrawer}
                             deleteAcc={deleteAcc}/>} />
                 <Route 
                     path="/sendForm" 
