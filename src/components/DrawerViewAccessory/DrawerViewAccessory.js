@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteAcc } from '../../reducers/accessories';
 
 import accSize1Image from '../../data/images/accessory-size-1.jpg';
 import accSize2Image from '../../data/images/accessory-size-2.jpg';
 import accSize3Image from '../../data/images/accessory-size-3.jpg';
 
-const DrawerViewAccessory = ({ deleteAcc }) => {
+const DrawerViewAccessory = () => {
     const {drawersData, currentDrawer} = useSelector(state => state.accessories);
     const {currentToolbox} = useSelector(state => state.toolbox);
+    const dispatch = useDispatch();
 
     const [layoutConfig, setLayoutConfig] = useState({
         pointTop: window.innerWidth > 575 ? 47 : 37,
@@ -68,6 +70,14 @@ const DrawerViewAccessory = ({ deleteAcc }) => {
         return top;
     };
 
+    const handleDeleteAcc = (event) => {
+        const drawerAcc = event.target.dataset.drawer;
+        const idAcc = event.target.dataset.id;
+    
+        dispatch(deleteAcc({ drawerAcc, idAcc }));
+    };
+
+
     return (
         <>
             {Object.entries(drawersData).map(([key, array]) => {
@@ -88,7 +98,7 @@ const DrawerViewAccessory = ({ deleteAcc }) => {
                                 className="drawers-content__delete"
                                 data-id={item.id}
                                 data-drawer={key}
-                                onClick={deleteAcc}
+                                onClick={handleDeleteAcc}
                             ></div>
                         </div>
                     );

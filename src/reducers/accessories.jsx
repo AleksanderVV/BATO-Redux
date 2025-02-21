@@ -63,7 +63,27 @@ const accessories = createSlice({
         },
         setCurrentDrawer: (state, action) => {
             state.currentDrawer = action.payload;
+        },
+        deleteAcc: (state, action) => {
+        
+            const { drawerAcc, idAcc } = action.payload;
+        
+            if (!state.drawersData[drawerAcc]) {
+                console.error(`❌ Drawer ${drawerAcc} не найден.`);
+                return;
+            }
+        
+            const newDrawersData = { ...state.drawersData };
+        
+            newDrawersData[drawerAcc] = newDrawersData[drawerAcc].filter(i => i.id !== idAcc);
+        
+            if (newDrawersData[drawerAcc].length === 0) {
+                delete newDrawersData[drawerAcc];
+            }
+        
+            state.drawersData = newDrawersData;
         }
+        
     },
     extraReducers: (builder) => {
         builder
@@ -93,7 +113,8 @@ export const {
                 setFilteredAccessories,
                 setAccessories,
                 setFullPrice,
-                setCurrentDrawer
+                setCurrentDrawer,
+                deleteAcc
             } = accessories.actions;
 
 export const selectQuantityItems = createSelector(

@@ -29,7 +29,6 @@ const useDebouncedCallback = (callback, delay) => {
 
 
 const DrawerSideBar = ({
-                        deleteAcc,
                         openChooseDrawers,
                         setOpenChooseDrawers}) => {
 
@@ -129,7 +128,7 @@ const DrawerSideBar = ({
             return (
                 <Tab.Pane eventKey={i} key={i}>
                     <div className="choose-accessories__drawers-content drawers-content">
-                        <DrawerViewAccessory deleteAcc={deleteAcc} />
+                        <DrawerViewAccessory />
                     </div>
                     {shelfImage}
                     <p 

@@ -10,7 +10,7 @@ import DrawerSideBar from '../../../components/DrawerSideBar/DrawerSideBar';
 import './mainContentSecondScreen.scss';
 import filterMobile from '../../../data/images/icon/filter-mobile.svg';
 
-const MainContentSecondScreen = ({deleteAcc}) => {
+const MainContentSecondScreen = () => {
 
     const [openChooseDrawers, setOpenChooseDrawers] = useState(false);
     const {isMobileOpen} = useSelector(state => state.conditions);
@@ -22,7 +22,6 @@ const MainContentSecondScreen = ({deleteAcc}) => {
             <div className="container">
                 <div className="row">
                     <DrawerSideBar 
-                        deleteAcc={deleteAcc}
                         openChooseDrawers={openChooseDrawers}
                         setOpenChooseDrawers={setOpenChooseDrawers} />
                     <div className="col-xl-6 col-xxl-8">

@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -13,10 +13,9 @@ import SecondScreen from '../SecondScreen/SecondScreen';
 import ThirdScreen from '../ThirdScreen/ThirdScreen';
 
 import './App.scss';
-import { updateDrawersData, clearDrawersData, clearSelectedAttachedAcc } from "../../reducers/accessories";
+import { clearDrawersData, clearSelectedAttachedAcc } from "../../reducers/accessories";
 
 const App = () => {
-    const {drawersData} = useSelector(state => state.accessories);
     const {isMobile} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
 
@@ -48,41 +47,18 @@ const App = () => {
         }
     },[location.pathname, dispatch])
 
-    const deleteAcc = useCallback((event) => {
-        const drawerAcc = event.target.dataset.drawer;
-        const idAcc = event.target.dataset.id;
-
-        if (!drawersData[drawerAcc]) {
-            console.error(`Drawer ${drawerAcc} does not exist.`);
-            return;
-        }
-
-        const updatedDrawerData = {
-            ...drawersData,
-            [drawerAcc]: drawersData[drawerAcc].filter(i => i.id !== idAcc)
-        };
-    
-        dispatch(updateDrawersData(updatedDrawerData));
-    },[drawersData, dispatch]);
-
     return (
         <>
             <Header />
-            <TopBar deleteAcc={deleteAcc} />
+            <TopBar />
             <Routes>
-                <Route path="/" element={
-                    <FirstScreen />
-                } /> 
+                <Route path="/" element={ <FirstScreen />} /> 
                 <Route 
                     path="/chooseAccessories" 
-                    element={
-                        <SecondScreen 
-                            deleteAcc={deleteAcc}/>} />
+                    element={ <SecondScreen />} />
                 <Route 
                     path="/sendForm" 
-                    element={<ThirdScreen 
-                                // fullPrice={fullPrice} 
-                            />} />
+                    element={ <ThirdScreen />} />
                 </Routes>
             <Footer />
         </>

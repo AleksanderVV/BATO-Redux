@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteAcc } from '../../reducers/accessories';
 
 import xIconImage from '../../data/images/icon/x-icon.svg';
 import figure1Image from '../../data/images/icon/fig1.svg';
@@ -7,13 +8,21 @@ import figure3Image from '../../data/images/icon/fig3.svg';
 import figure4Image from '../../data/images/icon/fig4.svg';
 import figure5Image from '../../data/images/icon/fig5.svg';
 
-const TopBarAccessory = ({deleteAcc}) => {
+const TopBarAccessory = () => {
     const {drawersData} = useSelector(state => state.accessories);
+    const dispatch = useDispatch();
 
     const getFigureImage = (length) => {
         const figures = [figure1Image, figure2Image, figure3Image, figure4Image, figure5Image];
         return figures[length - 1]
     }
+
+    const handleDeleteAcc = (event) => {
+        const drawerAcc = event.target.dataset.drawer;
+        const idAcc = event.target.dataset.id;
+    
+        dispatch(deleteAcc({ drawerAcc, idAcc }));
+    };
 
     return <>
             {Object.entries(drawersData).map(([key, array], index) => {
@@ -47,7 +56,7 @@ const TopBarAccessory = ({deleteAcc}) => {
                                                 </div>
                                                 <div 
                                                     className="accessory-selected__data-close d-flex justify-content-center align-items-center"
-                                                    onClick={deleteAcc}>
+                                                    onClick={handleDeleteAcc}>
                                                     <img src={xIconImage} alt="close" data-id={item.id} data-drawer={key}/>
                                                 </div>
                                             </div>

@@ -14,7 +14,7 @@ import arrowDown from '../../data/images/icon/arrow-down.svg';
 import arrowUpWhite from '../../data/images/icon/arrow-up-white.svg';
 import cartImage from '../../data/images/icon/cart.svg';
 
-const TopBar = ({deleteAcc}) => {    
+const TopBar = () => {    
     const location = useLocation();
     const navigate = useNavigate();
     const dropdownRef = useRef(null);
@@ -158,8 +158,7 @@ const TopBar = ({deleteAcc}) => {
                     <div className="row flex-fill">
                         <div className="col-12">
                             <div className="result-dropdown__accessory accessory-selected">
-                                    {<TopBarAccessory 
-                                        deleteAcc={deleteAcc} />}
+                                    {<TopBarAccessory />}
                                     {<TopBarAttachedAccessory />}
                             </div>
                         </div>
