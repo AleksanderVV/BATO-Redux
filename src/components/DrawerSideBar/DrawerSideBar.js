@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { checkIsMenuOpen } from '../../actions';
-import { resetCurrentDrawer, selectQuantityItems, setCurrentDrawer } from '../../reducers/accessories';
+import { resetCurrentDrawer, selectQuantityItems, setCurrentDrawer, setIsOpenChooseDrawers } from '../../reducers/accessories';
 
 import './drawerSideBar.scss';
 
@@ -28,12 +28,10 @@ const useDebouncedCallback = (callback, delay) => {
 };
 
 
-const DrawerSideBar = ({
-                        openChooseDrawers,
-                        setOpenChooseDrawers}) => {
+const DrawerSideBar = () => {
 
     const {currentToolbox} = useSelector(state => state.toolbox);
-    const {drawersData, fullPrice, currentDrawer} = useSelector(state => state.accessories);
+    const {drawersData, fullPrice, currentDrawer, openChooseDrawers} = useSelector(state => state.accessories);
     const {isMobile, isMenuOpen, isMobileOpen} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -41,7 +39,7 @@ const DrawerSideBar = ({
     const quantityItems = useSelector(selectQuantityItems);
 
     const [isBoxSticky, setIsBoxSticky] = useState(false);
-    const [drawerLeftStyle, setDrawerLeftStyle] = useState('150px');
+    const [drawerLeftStyle, setDrawerLeftStyle] = useState('0px');
 
 
     const handleScroll = useCallback(() => {
@@ -161,7 +159,7 @@ const DrawerSideBar = ({
                 style={{left:drawerLeftStyle, display: openChooseDrawers ? 'block' : ''}}>
                 <div 
                     className="choose-accessories__close-popup d-sm-none d-flex justify-content-center align-items-center"
-                    onClick={() => setOpenChooseDrawers(false)}>
+                    onClick={() => dispatch(setIsOpenChooseDrawers(false))}>
                     <img src={xIcon} alt="close" />
                 </div>
                 <div className="choose-accessories__drawers-tabs">

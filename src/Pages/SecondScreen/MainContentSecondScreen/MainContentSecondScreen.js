@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { Tab } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import { selectQuantityItems } from '../../../reducers/accessories';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectQuantityItems, setIsOpenChooseDrawers } from '../../../reducers/accessories';
 
 import AccessoriesFilters from '../../../components/AccessoriesFilters/AccessoriesFilters';
 import AccessoriesList from '../../../components/AccessoriesList/AccessoriesList';
@@ -12,18 +11,20 @@ import filterMobile from '../../../data/images/icon/filter-mobile.svg';
 
 const MainContentSecondScreen = () => {
 
-    const [openChooseDrawers, setOpenChooseDrawers] = useState(false);
     const {isMobileOpen} = useSelector(state => state.conditions);
     const {loading} = useSelector(state => state.accessories);
     const {quantityItems} = useSelector(selectQuantityItems);
+    const dispatch = useDispatch();
+
+    const handleClick = () => {
+        dispatch(setIsOpenChooseDrawers(true));
+    };
 
     return (
         <section id="choose-accessories" className="choose-accessories">
             <div className="container">
                 <div className="row">
-                    <DrawerSideBar 
-                        openChooseDrawers={openChooseDrawers}
-                        setOpenChooseDrawers={setOpenChooseDrawers} />
+                    <DrawerSideBar />
                     <div className="col-xl-6 col-xxl-8">
                         <div className="choose-accessories__select">
                         <Tab.Container defaultActiveKey={'all'}>
@@ -41,10 +42,10 @@ const MainContentSecondScreen = () => {
             <button 
                 className="choose-accessories__filter-top"
                 style={{display: isMobileOpen ? 'flex' : 'none'}}
-                onClick={() => setOpenChooseDrawers(true)}
+                onClick={handleClick}
                  >
                 <img src={filterMobile} alt="icon" />
-                <span>{quantityItems}</span>
+                <span>{quantityItems || 0}</span>
             </button>
         </section>
     )

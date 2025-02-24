@@ -25,7 +25,8 @@ const initialState = {
     loading: false,
     error: null,
     fullPrice: 0,
-    currentDrawer: 0
+    currentDrawer: 0,
+    openChooseDrawers: false
 }
 
 const accessories = createSlice({
@@ -82,6 +83,9 @@ const accessories = createSlice({
             }
         
             state.drawersData = newDrawersData;
+        },
+        setIsOpenChooseDrawers: (state, action) => {
+            state.openChooseDrawers = action.payload;
         }
         
     },
@@ -114,7 +118,8 @@ export const {
                 setAccessories,
                 setFullPrice,
                 setCurrentDrawer,
-                deleteAcc
+                deleteAcc,
+                setIsOpenChooseDrawers
             } = accessories.actions;
 
 export const selectQuantityItems = createSelector(
