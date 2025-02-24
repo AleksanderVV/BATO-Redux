@@ -9,15 +9,27 @@ import checkIcon from '../../data/images/icon/check.svg';
 
 import './toolboxList.scss';
 
-const ToolboxList = ({data}) => {
+const ToolboxList = () => {
 
+  const {toolboxList, toolboxFilters} = useSelector(state => state.toolbox);
   const {process} = useSelector(state => state.conditions);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  const renderItems = (data) => {
-    const items = data.map(item => {
+  const filterToolboxes = useMemo(() => {
+    const {wheels, color, numberDrawers} = toolboxFilters;
+
+    return toolboxList.filter(item => 
+        (wheels === 'all' || item.wheels === wheels) &&
+        (color === 'all' || item.color[0] === color) &&
+        (numberDrawers === 'all' || item.numberDrawers === numberDrawers)
+    )
+    
+  }, [toolboxList, toolboxFilters])
+
+  const renderItems = (filterToolboxes) => {
+    const items = filterToolboxes.map(item => {
 
       const sizeContent = (
         <>
@@ -27,7 +39,7 @@ const ToolboxList = ({data}) => {
         <img src={xIcon} alt="x"/>
         <span className="box-width">{item.size[2]} mm</span>
       </>
-      );
+  );
 
       const handleClick = () => {
         dispatch(toolboxChoose(item));
@@ -107,11 +119,11 @@ const ToolboxList = ({data}) => {
           default:
               return new Error('Unexpected process state');
       }
-    }
+    };
 
-    return setContent(process, () => renderItems(data))
+    return setContent(process, () => renderItems(filterToolboxes))
     // eslint-disable-next-line
-  }, [process,data])
+  }, [process,filterToolboxes])
 
   return (
       <div className="row">

@@ -18,7 +18,6 @@ import { clearDrawersData, clearSelectedAttachedAcc } from "../../reducers/acces
 const App = () => {
     const {isMobile} = useSelector(state => state.conditions);
     const dispatch = useDispatch();
-
     const location = useLocation();
 
     useEffect(() => {
