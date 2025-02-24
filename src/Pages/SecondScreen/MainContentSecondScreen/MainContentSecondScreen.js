@@ -13,7 +13,7 @@ const MainContentSecondScreen = () => {
 
     const {isMobileOpen} = useSelector(state => state.conditions);
     const {loading} = useSelector(state => state.accessories);
-    const {quantityItems} = useSelector(selectQuantityItems);
+    const quantityItems = useSelector(selectQuantityItems);
     const dispatch = useDispatch();
 
     const handleClick = () => {
