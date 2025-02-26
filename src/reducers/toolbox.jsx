@@ -27,30 +27,6 @@ const toolbox = createSlice({
     }
 });
 
-// const toolbox = (state = initialState, action) => {
-//     switch (action.type) {
-//         case 'TOOLBOX_FETCHED':
-//             return {
-//                 ...state,
-//                 toolboxList: action.payload
-//             }
-//         case 'TOOLBOX_CHOOSE':
-//             return {
-//                 ...state,
-//                 currentToolbox: action.payload
-//             }
-//         case 'UPDATE_TOOLBOX_FILTER':
-//             return {
-//                 ...state,
-//                 toolboxFilters: {
-//                     ...state.toolboxFilters,
-//                     [action.payload.filterType]: action.payload.value
-//                 }
-//             }
-//         default: return state
-//     }
-// }
-
 export const { toolboxFetched, toolboxChoose, updateToolboxFilter } = toolbox.actions;
 
 export default toolbox.reducer;
