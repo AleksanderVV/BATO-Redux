@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { Tab } from 'react-bootstrap';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { checkIsMobileOpen } from '../../actions';
+import { checkIsMobileOpen } from '../../reducers/conditions';
 import {
         setSelectedAttachedAcc, 
         updateDrawersData, 

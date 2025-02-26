@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { toolboxChoose } from '../../actions';
+import { toolboxChoose } from '../../reducers/toolbox';
 
 import xIcon from '../../data/images/icon/x-icon.svg';
 import checkIcon from '../../data/images/icon/check.svg';

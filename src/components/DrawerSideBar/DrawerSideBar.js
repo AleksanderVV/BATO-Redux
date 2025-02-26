@@ -4,7 +4,7 @@ import DrawerViewAccessory from '../DrawerViewAccessory/DrawerViewAccessory';
 import { useNavigate } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { checkIsMenuOpen } from '../../actions';
+import { checkIsMenuOpen } from '../../reducers/conditions';
 import { resetCurrentDrawer, selectQuantityItems, setCurrentDrawer, setIsOpenChooseDrawers } from '../../reducers/accessories';
 
 import './drawerSideBar.scss';
@@ -50,6 +50,10 @@ const DrawerSideBar = () => {
         if (window.innerWidth > 1600) {
             setDrawerLeftStyle(`${150 + (window.innerWidth - 1600) / 2}px`);
         }
+        if (!isMobile) {
+            setDrawerLeftStyle('150px');
+        }
+
     }, []);
 
     const debouncedScroll = useDebouncedCallback(handleScroll, 50);

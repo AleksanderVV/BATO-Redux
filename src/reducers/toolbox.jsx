@@ -18,6 +18,8 @@ const toolbox = createSlice({
             state.toolboxList = action.payload;
         },
         toolboxChoose: (state, action) => {
+            console.log(action.payload);
+            
             state.currentToolbox = action.payload;
         },
         updateToolboxFilter: (state, action) => {
