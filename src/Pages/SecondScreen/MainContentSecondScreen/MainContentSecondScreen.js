@@ -11,7 +11,7 @@ import filterMobile from '../../../data/images/icon/filter-mobile.svg';
 
 const MainContentSecondScreen = () => {
 
-    const {isMobileOpen} = useSelector(state => state.conditions);
+    const {isMobileOpen, isMenuOpen} = useSelector(state => state.conditions);
     const {loading} = useSelector(state => state.accessories);
     const quantityItems = useSelector(selectQuantityItems);
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const MainContentSecondScreen = () => {
     };
 
     return (
-        <section id="choose-accessories" className="choose-accessories">
+        <section id="choose-accessories" className="choose-accessories" style={{marginRight: isMenuOpen ? '17px' : '0px'}}>
             <div className="container">
                 <div className="row">
                     <DrawerSideBar />

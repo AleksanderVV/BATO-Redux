@@ -27,7 +27,6 @@ const useDebouncedCallback = (callback, delay) => {
     }, [callback, delay]);
 };
 
-
 const DrawerSideBar = () => {
 
     const {currentToolbox} = useSelector(state => state.toolbox);
@@ -41,33 +40,28 @@ const DrawerSideBar = () => {
     const [isBoxSticky, setIsBoxSticky] = useState(false);
     const [drawerLeftStyle, setDrawerLeftStyle] = useState('0px');
 
+    useEffect(() => {
+        if (!isMobile) {
+            setDrawerLeftStyle('150px');
+        }
+        if (window.innerWidth > 1600) {
+            setDrawerLeftStyle(`${150 + (window.innerWidth - 1600) / 2}px`);
+        }
+    }, [isMobile]);
 
     const handleScroll = useCallback(() => {
         setIsBoxSticky(window.scrollY > 1060);
     }, []);
 
-    const handleResize = useCallback(() => {
-        if (window.innerWidth > 1600) {
-            setDrawerLeftStyle(`${150 + (window.innerWidth - 1600) / 2}px`);
-        }
-        if (!isMobile) {
-            setDrawerLeftStyle('150px');
-        }
-
-    }, []);
-
     const debouncedScroll = useDebouncedCallback(handleScroll, 50);
-    const debouncedResize = useDebouncedCallback(handleResize, 100);
 
     useEffect(() => {
         window.addEventListener('scroll', debouncedScroll);
-        window.addEventListener('resize', debouncedResize);
 
         return () => {
             window.removeEventListener('scroll', debouncedScroll);
-            window.removeEventListener('resize', debouncedResize);
         };
-    }, [debouncedScroll, debouncedResize]);
+    }, [debouncedScroll]);
 
     if (!currentToolbox) {
         return <p>No toolbox selected</p>;

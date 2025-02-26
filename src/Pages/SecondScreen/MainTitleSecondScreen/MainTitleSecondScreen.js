@@ -7,10 +7,12 @@ import mouseImage from '../../../data/images/icon/mouse.svg';
 import flagImage from '../../../data/images/icon/flag.svg';
 
 const MainTitleSecondScreen = () => {
-    const {isMobile, isSticky} = useSelector(state => state.conditions);
+    const {isMobile, isSticky, isMenuOpen} = useSelector(state => state.conditions);
     
     return (
-        <section className={`total-main total-accessories ${!isSticky ? '' : isMobile ? '' : 'margin-top'}`}>
+        <section 
+            className={`total-main total-accessories ${!isSticky ? '' : isMobile ? '' : 'margin-top'}`}
+            style={{marginRight: isMenuOpen ? '17px' : '0px'}}>
             <div className="container d-none d-sm-block">
                 <div className="row">
                     <div className="d-block d-md-none">
