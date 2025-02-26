@@ -5,7 +5,8 @@ import useToolboxService from "../../../services/ToolboxService";
 import { useEffect } from "react";
 import { useDispatch } from 'react-redux';
 
-import { dataFetching, toolboxFetched, dataFetchingError } from '../../../actions';
+import { toolboxFetched } from '../../../reducers/toolbox';
+import { dataFetching,dataFetched, dataFetchingError } from '../../../reducers/conditions';
 
 import './mainContentFirstScreen.scss';
 
@@ -20,6 +21,7 @@ const MainContentFirstScreen = () => {
         getAllToolbox()
             .then(data => {
                 dispatch(toolboxFetched(data));
+                dispatch(dataFetched());
             })
             .catch(() => dispatch(dataFetchingError()))
     }, [dispatch, getAllToolbox]);

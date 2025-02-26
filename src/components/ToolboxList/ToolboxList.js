@@ -26,9 +26,11 @@ const ToolboxList = () => {
         (numberDrawers === 'all' || item.numberDrawers === numberDrawers)
     )
     
-  }, [toolboxList, toolboxFilters])
+  }, [toolboxList, toolboxFilters]);
 
   const renderItems = (filterToolboxes) => {
+
+    
     const items = filterToolboxes.map(item => {
 
       const sizeContent = (

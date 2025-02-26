@@ -1,3 +1,5 @@
+import { createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
     toolboxList: [],
     currentToolbox: null,
@@ -8,28 +10,46 @@ const initialState = {
     }
 }
 
-const toolbox = (state = initialState, action) => {
-    switch (action.type) {
-        case 'TOOLBOX_FETCHED':
-            return {
-                ...state,
-                toolboxList: action.payload
-            }
-        case 'TOOLBOX_CHOOSE':
-            return {
-                ...state,
-                currentToolbox: action.payload
-            }
-        case 'UPDATE_TOOLBOX_FILTER':
-            return {
-                ...state,
-                toolboxFilters: {
-                    ...state.toolboxFilters,
-                    [action.payload.filterType]: action.payload.value
-                }
-            }
-        default: return state
+const toolbox = createSlice({
+    name: "toolbox",
+    initialState,
+    reducers: {
+        toolboxFetched: (state, action) => {
+            state.toolboxList = action.payload;
+        },
+        toolboxChoose: (state, action) => {
+            state.currentToolbox = action.payload;
+        },
+        updateToolboxFilter: (state, action) => {
+            state.toolboxFilters[action.payload.filterType] = action.payload.value;
+        }
     }
-}
+});
 
-export default toolbox;
+// const toolbox = (state = initialState, action) => {
+//     switch (action.type) {
+//         case 'TOOLBOX_FETCHED':
+//             return {
+//                 ...state,
+//                 toolboxList: action.payload
+//             }
+//         case 'TOOLBOX_CHOOSE':
+//             return {
+//                 ...state,
+//                 currentToolbox: action.payload
+//             }
+//         case 'UPDATE_TOOLBOX_FILTER':
+//             return {
+//                 ...state,
+//                 toolboxFilters: {
+//                     ...state.toolboxFilters,
+//                     [action.payload.filterType]: action.payload.value
+//                 }
+//             }
+//         default: return state
+//     }
+// }
+
+export const { toolboxFetched, toolboxChoose, updateToolboxFilter } = toolbox.actions;
+
+export default toolbox.reducer;
