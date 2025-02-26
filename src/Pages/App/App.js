@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { checkIsMobile, checkIsSticky } from "../../actions";
+import { checkIsMobile, checkIsSticky } from "../../reducers/conditions";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";

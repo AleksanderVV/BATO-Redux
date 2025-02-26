@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { checkIsMenuOpen } from '../../actions';
+import { checkIsMenuOpen } from '../../reducers/conditions';
 import { selectQuantityItems } from '../../reducers/accessories';
 
 import arrowDown from '../../data/images/icon/arrow-down.svg';

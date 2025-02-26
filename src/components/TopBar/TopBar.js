@@ -5,7 +5,7 @@ import TopBarAccessory from '../TopBarAccessory/TopBarAccessory';
 import TopBarAttachedAccessory from '../TopBarAttachedAccessory/TopBarAttachedAccessory';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { checkIsMenuOpen } from '../../actions';
+import { checkIsMenuOpen } from '../../reducers/conditions';
 import { selectQuantityItems, setFullPrice } from '../../reducers/accessories';
 
 import './topBar.scss';
