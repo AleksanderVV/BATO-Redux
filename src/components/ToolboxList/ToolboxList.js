@@ -21,16 +21,19 @@ const ToolboxList = () => {
     const {wheels, color, numberDrawers} = toolboxFilters;
 
     return toolboxList.filter(item => 
-        (wheels === 'all' || item.wheels === wheels) &&
+       { 
+
+        
+        return (wheels === 'all' || item.wheels === wheels) &&
         (color === 'all' || item.color[0] === color) &&
-        (numberDrawers === 'all' || item.numberDrawers === numberDrawers)
+        (numberDrawers === 'all' || item.numberDrawers === numberDrawers)}
     )
     
   }, [toolboxList, toolboxFilters]);
 
+
   const renderItems = (filterToolboxes) => {
 
-    
     const items = filterToolboxes.map(item => {
 
       const sizeContent = (

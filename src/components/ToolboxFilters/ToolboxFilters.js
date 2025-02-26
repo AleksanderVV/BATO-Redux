@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { updateToolboxFilter } from '../../actions';
+import { updateToolboxFilter } from '../../reducers/toolbox';
 
 import ColorFilterToolbox from '../ColorFilterToolbox/ColorFilterToolbox';
 import DrawerFilterToolbox from '../DrawersFilterToolbox/DrawerFilterToolbox';
@@ -12,7 +12,7 @@ const ToolboxFilters = () => {
   const dispatch = useDispatch();
 
   const handleFilterChange = (filterType, value) => {
-    dispatch(updateToolboxFilter(filterType, value));
+    dispatch(updateToolboxFilter({filterType, value}));
   };
 
     return (

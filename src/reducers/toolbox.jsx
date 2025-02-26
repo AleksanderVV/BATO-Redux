@@ -21,7 +21,8 @@ const toolbox = createSlice({
             state.currentToolbox = action.payload;
         },
         updateToolboxFilter: (state, action) => {
-            state.toolboxFilters[action.payload.filterType] = action.payload.value;
+            const { filterType, value } = action.payload;            
+            state.toolboxFilters[filterType] = value;
         }
     }
 });
